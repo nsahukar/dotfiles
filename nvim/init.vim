@@ -113,6 +113,8 @@ Plug 'hrsh7th/nvim-compe'
 Plug 'hrsh7th/vim-vsnip'
 " Show function signature
 Plug 'ray-x/lsp_signature.nvim'
+" Treesitter
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Golang
 Plug 'golang/vscode-go'
 
@@ -157,6 +159,9 @@ set shortmess+=c
 " vsnip
 " If you want to use snippet for multiple filetypes, you can `g:vsnip_filetypes` for it.
 let g:vsnip_filetypes = {}
+
+" treesitter
+luafile ~/.config/nvim/plug/lang/treesitter/conf.lua
 
 " golang
 luafile ~/.config/nvim/plug/lang/go/conf.lua
