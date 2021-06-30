@@ -4,6 +4,9 @@
 
 " *** BASIC ***
 
+" Map leader key to space
+let mapleader = " "
+
 " Vim is based on Vi. Setting `nocompatible` switches from the default
 " Vi-compatibility mode and enables useful Vim functionality. This
 " configuration option turns out not to be necessary for the file named
@@ -57,6 +60,9 @@ set smartcase
 
 " Enable searching as you type, rather than waiting till you press enter.
 set incsearch
+
+" Stop the highlighting (incsearch)
+map <leader>h :noh<CR>
 
 " Unbind some useless/annoying default key bindings.
 nmap Q <Nop> " 'Q' in normal mode enters Ex mode. You almost never want this.
@@ -119,7 +125,13 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'golang/vscode-go'
 
 " Telescope (Extendable fuzzy finder)
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
+" Dev Icons (nvim)
+Plug 'kyazdani42/nvim-web-devicons'
 
 " Initialize plugin system
 call plug#end()
@@ -167,3 +179,6 @@ luafile ~/.config/nvim/plug/lang/treesitter/conf.lua
 luafile ~/.config/nvim/plug/lang/go/conf.lua
 autocmd BufWritePre *.go lua goimports(1000)
 
+
+" *** TELESCOPE ***
+luafile ~/.config/nvim/plug/telescope/conf.lua
