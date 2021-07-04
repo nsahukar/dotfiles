@@ -188,8 +188,14 @@ luafile ~/.config/nvim/plug/telescope/conf.lua
 " *** CUSTOM COMMANDS ***
 "
 " Telescope
+
+" |- grep_string 
+"    prerequisite: ripgrep needed to be installed
+"    cmd: Rg <search-string>
 :command -nargs=1 -complete=buffer Rg :Telescope grep_string search=<args>
 
+" |- find_files
+"    cmd: Files [current-working-directory]
 function! FindFiles(cwd)
 	if len(a:cwd) == 0
 		exe ":Telescope find_files"
