@@ -3,7 +3,7 @@
 " If you open this file in Vim, it'll be syntax highlighted for you.
 
 " *** BASIC ***
-
+"
 " Map leader key to space
 let mapleader = " "
 
@@ -92,7 +92,7 @@ inoremap <Down>  <ESC>:echoe "Use j"<CR>
 
 
 " *** TAB AND SPACES ***
-
+"
 set tabstop=4		" Size of a hard tabstop (ts)
 set shiftwidth=4	" Size of an indentation (sw)
 set noexpandtab		" Always use tabs instead of space charaters (noet)
@@ -100,7 +100,7 @@ set autoindent		" Copy indent from current line when starting a new line (ai)
 
 
 " *** PLUGINS ***
-
+"
 " Specify a directory for plugins
 call plug#begin(stdpath('data') . '/plugged')
 
@@ -138,7 +138,7 @@ call plug#end()
 
 
 " *** LIGHTLINE ***
-
+"
 " performance optimization
 set ttimeout ttimeoutlen=50
 " disabling showing default vim modes
@@ -150,12 +150,12 @@ let g:lightline = {
 
 
 " *** COLOR SCHEME ***
-
+"
 colorscheme nord
 
 
 " *** LANGUAGES INTELLISENSE AND AUTOCOMPLETION ***
-
+"
 " lsp
 luafile ~/.config/nvim/plug/lang/lsp/conf.lua
 
@@ -181,4 +181,21 @@ autocmd BufWritePre *.go lua goimports(1000)
 
 
 " *** TELESCOPE ***
+"
 luafile ~/.config/nvim/plug/telescope/conf.lua
+
+
+" *** CUSTOM COMMANDS ***
+"
+" Telescope
+:command -nargs=1 -complete=buffer Rg :Telescope grep_string search=<args>
+
+function! FindFiles(cwd)
+	if len(a:cwd) == 0
+		exe ":Telescope find_files"
+	else
+		exe ":Telescope find_files cwd=" . a:cwd
+	endif
+endfunction
+
+:command -nargs=? -complete=dir Files call FindFiles(<q-args>)
