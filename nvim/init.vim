@@ -215,7 +215,11 @@ endfunction
 
 " *** VIMWIKI ***
 "
+" custom path and index
 let g:vimwiki_list = [{'path': '~/Documents/todos/', 'index': 'launchpad'}]
+
+" modified textwidth for vimwiki buffers
+autocmd BufRead,BufNewFile *.wiki setlocal textwidth=36
 
 " |- cmd:  <leader>ww
 " 	 desc: Remapping default <leader>ww in vimwiki plugin.
