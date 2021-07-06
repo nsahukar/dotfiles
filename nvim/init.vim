@@ -133,6 +133,10 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 " Dev Icons (nvim)
 Plug 'kyazdani42/nvim-web-devicons'
 
+" VimWiki
+Plug 'vimwiki/vimwiki'
+
+
 " Initialize plugin system
 call plug#end()
 
@@ -154,7 +158,7 @@ let g:lightline = {
 colorscheme nord
 
 
-" *** LANGUAGES INTELLISENSE AND AUTOCOMPLETION ***
+" *** LANGUAGE SERVERS AND AUTOCOMPLETION ***
 "
 " lsp
 luafile ~/.config/nvim/plug/lang/lsp/conf.lua
@@ -184,18 +188,14 @@ autocmd BufWritePre *.go lua goimports(1000)
 "
 luafile ~/.config/nvim/plug/telescope/conf.lua
 
-
-" *** CUSTOM COMMANDS ***
-"
-" Telescope
-
-" |- grep_string 
-"    prerequisite: ripgrep needed to be installed
-"    cmd: Rg <search-string>
+" |- cmd:  Rg <search-string>
+"    pre:  'ripgrep' needed to be installed.
+"    desc: Configuring telescope 'grep_string' to specific needs.
 :command -nargs=1 -complete=buffer Rg :Telescope grep_string search=<args>
 
-" |- find_files
-"    cmd: Files [current-working-directory]
+" |- cmd:  Files [current-working-directory]
+" 	 desc: Configuring telescope 'find_files' to specific needs.
+" 	 	   Now takes optional current working directory.
 function! FindFiles(cwd)
 	if len(a:cwd) == 0
 		exe ":Telescope find_files"
@@ -205,3 +205,36 @@ function! FindFiles(cwd)
 endfunction
 
 :command -nargs=? -complete=dir Files call FindFiles(<q-args>)
+
+
+" *** VIMWIKI ***
+"
+let g:vimwiki_list = [{'path': '~/Documents/todos/', 'index': 'launchpad'}]
+
+" |- cmd:  <leader>ww
+" 	 desc: Remapping default <leader>ww in vimwiki plugin.
+" 	       Now opens in vertical split 40% right side. 
+let todoIndex = "~/Documents/todos/launchpad.wiki"
+
+function! GetWikiBufs()
+	 return join(map(filter(range(1, bufnr('$')), 'buflisted(v:val) && bufname(v:val) =~ ".*\\.wiki"'), {_, val -> bufname(val)}), " ")
+endfunction
+
+function! OpenTodosDrawer()
+	exe ":rightb vsplit " . g:todoIndex . " | vert resize 40"
+endfunction
+
+function! CloseTodosDrawer(todoBufs)
+	exe "bd! " . a:todoBufs
+endfunction
+
+function! ToggleTodosDrawer()
+	let todoBufs = GetWikiBufs()
+	if len(todoBufs) > 0
+		call CloseTodosDrawer(todoBufs)
+	else
+		call OpenTodosDrawer()
+	endif
+endfunction
+
+:nnoremap <leader>ww :call ToggleTodosDrawer()<CR>
