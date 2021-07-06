@@ -90,6 +90,12 @@ inoremap <Right> <ESC>:echoe "Use l"<CR>
 inoremap <Up>    <ESC>:echoe "Use k"<CR>
 inoremap <Down>  <ESC>:echoe "Use j"<CR>
 
+" Remapping resizing split windows
+:nnoremap <M-j> <C-w>+
+:nnoremap <M-k> <C-w>-
+:nnoremap <M-h> <C-w>>
+:nnoremap <M-l> <C-w><
+
 
 " *** TAB AND SPACES ***
 "
