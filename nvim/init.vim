@@ -7,6 +7,9 @@
 " Map leader key to space
 let mapleader = " "
 
+" Use TUI colors
+set termguicolors
+
 " Vim is based on Vi. Setting `nocompatible` switches from the default
 " Vi-compatibility mode and enables useful Vim functionality. This
 " configuration option turns out not to be necessary for the file named
@@ -24,9 +27,6 @@ set shortmess+=I
 
 " Show line numbers.
 set number
-
-" Turn on smart indentation
-set smartindent
 
 " This enables relative line numbering mode. With both number and
 " relativenumber enabled, the current line shows the true line number, while
@@ -90,11 +90,30 @@ inoremap <Right> <ESC>:echoe "Use l"<CR>
 inoremap <Up>    <ESC>:echoe "Use k"<CR>
 inoremap <Down>  <ESC>:echoe "Use j"<CR>
 
+" Remapping beginning of line, end of line
+nnoremap <M-j> ^
+nnoremap <M-m> $
+
 " Remapping resizing split windows
-:nnoremap <M-j> <C-w>+
-:nnoremap <M-k> <C-w>-
-:nnoremap <M-h> <C-w>>
-:nnoremap <M-l> <C-w><
+nnoremap <M-h> <C-w>>
+nnoremap <M-l> <C-w><
+
+" Ramapping moving around split windows
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" CursorLine highlight applied in current window only
+augroup CursorLine
+	au!
+	au VimEnter,WinEnter,BufEnter * setlocal cursorline
+	au Winleave * setlocal nocursorline
+augroup END
+
+" Simple copy, paste from system clipboard, using '+' register here
+map <leader>y "+y
+map <leader>p "+p
 
 
 " *** TAB AND SPACES ***
@@ -103,6 +122,7 @@ set tabstop=4		" Size of a hard tabstop (ts)
 set shiftwidth=4	" Size of an indentation (sw)
 set noexpandtab		" Always use tabs instead of space charaters (noet)
 set autoindent		" Copy indent from current line when starting a new line (ai)
+set smartindent 	" Smart auto-indenting for programs
 
 
 " *** PLUGINS ***
@@ -162,6 +182,13 @@ let g:lightline = {
 " *** COLOR SCHEME ***
 "
 colorscheme nord
+
+" Minor color adjustments
+"
+" |- normal
+hi Normal guibg=#131313
+" |- cursorline
+hi CursorLine guibg=#191919
 
 
 " *** LANGUAGE SERVERS AND AUTOCOMPLETION ***
