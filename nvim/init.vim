@@ -134,8 +134,12 @@ call plug#begin(stdpath('data') . '/plugged')
 " Lightline
 Plug 'itchyny/lightline.vim'
 
-" Nord Color Scheme
-Plug 'arcticicestudio/nord-vim'
+" Iceberg colorscheme
+Plug 'cocopon/iceberg.vim'
+" Jellybeans colorscheme
+Plug 'metalelf0/jellybeans-nvim'
+" Lush (Colorscheme creation aid)
+Plug 'rktjmp/lush.nvim'
 
 " LSP (Native)
 Plug 'neovim/nvim-lspconfig'
@@ -181,7 +185,7 @@ let g:lightline = {
 
 " *** COLOR SCHEME ***
 "
-colorscheme nord
+colorscheme jellybeans-nvim
 
 " Minor color adjustments
 "
