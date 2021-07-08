@@ -1,1 +1,1 @@
-function __batman_color_snd; set_color -o bd93f9; end
+function __batman_color_snd; set_color -o 8aa4f3; end

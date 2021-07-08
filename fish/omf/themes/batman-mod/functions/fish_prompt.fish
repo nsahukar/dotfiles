@@ -22,8 +22,8 @@ function fish_prompt
   set -l pwd (prompt_pwd)
   set -l base (basename "$pwd")
 
-  set -l expr "s|~|"(__batman_color_fst)"^^"(__batman_color_off)"|g; \
-               s|/|"(__batman_color_snd)"/"(__batman_color_off)"|g;  \
+  set -l expr "s|~|"(__batman_color_fst)"ᛟ"(__batman_color_off)"|g; \
+               s|/|"(__batman_color_dim)"/"(__batman_color_off)"|g;  \
                s|"$base"|"(__batman_color_fst)$base(__batman_color_off)" |g"
 
   echo -n (echo "$pwd" | sed -e $expr)(__batman_color_off)
@@ -38,7 +38,7 @@ function fish_prompt
   if git rev-parse 2> /dev/null
     set git_branch_color aaa
     git::is_stashed; and echo (__batman_color_trd)"^"(__batman_color_off)
-    printf (__batman_color_snd)"["(begin
+    printf (__batman_color_dim)"("(begin
       if git::is_touched
         echo (__batman_color_trd)"*"(__batman_color_off)
       else
@@ -51,13 +51,13 @@ function fish_prompt
         else
           echo (__batman_color_trd)" +"(__batman_color_dim)$count
         end
-    end)(__batman_color_snd)"] "(__batman_color_off)
+    end)(__batman_color_dim)") "(__batman_color_off)
   end
 
   echo
 
   for color in $colors
-    echo -n (set_color $color)"⋊"
+    echo -n (set_color $color)"☇"
   end
 
   echo -n " "
