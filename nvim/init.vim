@@ -179,8 +179,27 @@ set ttimeout ttimeoutlen=50
 set noshowmode
 " colorscheme
 let g:lightline = {
-	\'colorscheme': 'darcula',
-	\}
+    \ 'colorscheme': 'darcula',
+ 	\ 'component': {
+ 	\   'lineinfo': '%3l:%-2v',
+ 	\ },
+ 	\ 'component_function': {
+ 	\   'readonly': 'LightlineReadonly',
+ 	\   'fugitive': 'LightlineFugitive'
+ 	\ },
+ 	\ 'separator': { 'left': '', 'right': '' },
+ 	\ 'subseparator': { 'left': '⏺', 'right': '⏺' }
+ 	\ }
+function! LightlineReadonly()
+	return &readonly ? '' : ''
+endfunction
+function! LightlineFugitive()
+	if exists('*FugitiveHead')
+		let branch = FugitiveHead()
+		return branch !=# '' ? ''.branch : ''
+	endif
+	return ''
+endfunction
 
 
 " *** COLOR SCHEME ***
