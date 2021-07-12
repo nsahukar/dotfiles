@@ -188,7 +188,7 @@ let g:lightline = {
  	\   'fugitive': 'LightlineFugitive'
  	\ },
  	\ 'separator': { 'left': '', 'right': '' },
- 	\ 'subseparator': { 'left': '⏺', 'right': '⏺' }
+ 	\ 'subseparator': { 'left': '⏐', 'right': '⏐' }
  	\ }
 function! LightlineReadonly()
 	return &readonly ? '' : ''
