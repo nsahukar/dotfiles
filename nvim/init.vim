@@ -193,6 +193,10 @@ colorscheme jellybeans-nvim
 hi Normal guibg=#131313
 " |- cursorline
 hi CursorLine guibg=#191919
+" |- pmenu
+hi Pmenu guibg=#212121 guifg=#AFA89D
+" |- pmenusel
+hi PmenuSel guibg=#C6B6EE guifg=#000000
 
 
 " *** LANGUAGE SERVERS AND AUTOCOMPLETION ***
