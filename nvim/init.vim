@@ -158,6 +158,8 @@ Plug 'hrsh7th/vim-vsnip'
 Plug 'ray-x/lsp_signature.nvim'
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" Toggle comments in neovim
+Plug 'terrortylor/nvim-comment'
 " Golang
 Plug 'golang/vscode-go'
 
@@ -277,6 +279,11 @@ function! FindFiles(cwd)
 endfunction
 
 command -nargs=? -complete=dir Files call FindFiles(<q-args>)
+
+
+" *** COMMENT ***
+"
+luafile ~/.config/nvim/plug/comment/conf.lua
 
 
 " *** VIMWIKI ***
