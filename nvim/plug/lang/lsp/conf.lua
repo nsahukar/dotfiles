@@ -48,3 +48,67 @@ vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
 -- Set completeopt to have a better completion experience
 -- vim.o.completeopt="menuone,noinsert"
 vim.o.completeopt="menuone,noselect,noinsert"
+
+
+-- Control diagnostics
+--
+-- Clear diagnostic indicators
+function lsp_diagnostic_indicators_clear()
+  vim.lsp.diagnostic.clear(0)
+end
+
+-- Disable diagnostic indicators
+function lsp_diagnostic_indicators_disable()
+  -- turn off all indicators
+  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+  	  signs = false,
+  	  virtual_text = false,
+  	  underline = false,
+      update_in_insert = false,
+    }
+  )
+end
+
+-- Redraw diagnostic indicators
+function lsp_diagnostic_indicators_redraw()
+  for _,lsp_client_id in pairs(vim.tbl_keys(vim.lsp.buf_get_clients())) do
+    vim.lsp.handlers['textDocument/publishDiagnostics'](
+      nil,
+      'textDocument/publishDiagnostics', {
+          diagnostics = vim.lsp.diagnostic.get(0, lsp_client_id),
+          uri = vim.uri_from_bufnr(0)
+      },
+      lsp_client_id
+    )
+  end
+end
+
+-- Enable signs and virtual text diagnostic indicators
+function lsp_diagnostic_indicators_signsvirtualtext()
+  vim.b.lsp_diagnostic_indicators_mode = 'SignsVirtualText'
+  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+  	  signs = true,
+  	  virtual_text = true,
+  	  underline = false,
+      update_in_insert = false,
+    }
+  )
+end
+
+-- Toggle diagnostics
+function _G.lsp_diagnostic_indicators_toggle()
+  if vim.b.lsp_diagnostic_indicators_show then
+	lsp_diagnostic_indicators_clear()
+	lsp_diagnostic_indicators_disable()
+    vim.b.lsp_diagnostic_indicators_show = false
+  else
+	lsp_diagnostic_indicators_signsvirtualtext()
+	lsp_diagnostic_indicators_redraw()
+    vim.b.lsp_diagnostic_indicators_show = true
+  end
+end
+
+vim.b.lsp_diagnostic_indicators_show = false
+lsp_diagnostic_indicators_disable()

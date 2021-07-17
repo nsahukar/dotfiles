@@ -177,15 +177,19 @@ call plug#end()
 set ttimeout ttimeoutlen=50
 " disabling showing default vim modes
 set noshowmode
-" colorscheme
+" mods
 let g:lightline = {
     \ 'colorscheme': 'darcula',
+	\ 'active': {
+	\ 	'left': [ [ 'mode', 'paste' ],
+	\ 			  [ 'readonly', 'filename', 'modified' ] ]
+	\ },
  	\ 'component': {
  	\   'lineinfo': '%3l:%-2v',
  	\ },
  	\ 'component_function': {
  	\   'readonly': 'LightlineReadonly',
- 	\   'fugitive': 'LightlineFugitive'
+ 	\   'fugitive': 'LightlineFugitive',
  	\ },
  	\ 'separator': { 'left': '', 'right': '' },
  	\ 'subseparator': { 'left': '⏐', 'right': '⏐' }
@@ -222,6 +226,7 @@ hi PmenuSel guibg=#C6B6EE guifg=#000000
 "
 " lsp
 luafile ~/.config/nvim/plug/lang/lsp/conf.lua
+nnoremap <silent><leader>dd :lua lsp_diagnostic_indicators_toggle()<CR>
 
 " compe
 luafile ~/.config/nvim/plug/lang/compe/conf.lua
@@ -251,7 +256,7 @@ luafile ~/.config/nvim/plug/telescope/conf.lua
 " |- cmd:  Rg <search-string>
 "    pre:  'ripgrep' needed to be installed.
 "    desc: Configuring telescope 'grep_string' to specific needs.
-:command -nargs=1 -complete=buffer Rg :Telescope grep_string search=<args>
+command -nargs=1 -complete=buffer Rg :Telescope grep_string search=<args>
 
 " |- cmd:  Files [current-working-directory]
 " 	 desc: Configuring telescope 'find_files' to specific needs.
@@ -264,7 +269,7 @@ function! FindFiles(cwd)
 	endif
 endfunction
 
-:command -nargs=? -complete=dir Files call FindFiles(<q-args>)
+command -nargs=? -complete=dir Files call FindFiles(<q-args>)
 
 
 " *** VIMWIKI ***
@@ -301,7 +306,7 @@ function! ToggleTodosDrawer()
 	endif
 endfunction
 
-:nnoremap <leader>ww :call ToggleTodosDrawer()<CR>
+nnoremap <silent> <leader>ww :call ToggleTodosDrawer()<CR>
 
 " overriding 'VimwikiLinkHandler' to open always
 " open file in new tab.
