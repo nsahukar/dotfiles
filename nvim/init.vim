@@ -118,11 +118,18 @@ map <leader>p "+p
 
 " *** TAB AND SPACES ***
 "
+" general
 set tabstop=4		" Size of a hard tabstop (ts)
 set shiftwidth=4	" Size of an indentation (sw)
 set noexpandtab		" Always use tabs instead of space charaters (noet)
 set autoindent		" Copy indent from current line when starting a new line (ai)
 set smartindent 	" Smart auto-indenting for programs
+" lua
+augroup CursorLine
+	au!
+	au BufRead,BufNewFile *.lua setlocal tabstop=2
+	au BufRead,BufNewFile *.lua setlocal shiftwidth=2
+augroup END
 
 
 " *** PLUGINS ***
