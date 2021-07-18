@@ -90,6 +90,13 @@ inoremap <Right> <ESC>:echoe "Use l"<CR>
 inoremap <Up>    <ESC>:echoe "Use k"<CR>
 inoremap <Down>  <ESC>:echoe "Use j"<CR>
 
+" Mapping to delete current word in insert mode
+inoremap <silent> <M-BS> <ESC>:normal bdw<CR>a
+
+" Simple copy, paste from system clipboard, using '+' register here
+map <leader>y "+y
+map <leader>p "+p
+
 " Remapping beginning of line, end of line
 nnoremap <M-j> ^
 nnoremap <M-m> $
@@ -110,10 +117,6 @@ augroup CursorLine
 	au VimEnter,WinEnter,BufEnter * setlocal cursorline
 	au Winleave * setlocal nocursorline
 augroup END
-
-" Simple copy, paste from system clipboard, using '+' register here
-map <leader>y "+y
-map <leader>p "+p
 
 
 " *** TAB AND SPACES ***
@@ -235,7 +238,7 @@ hi PmenuSel guibg=#C6B6EE guifg=#000000
 "
 " lsp
 luafile ~/.config/nvim/plug/lang/lsp/conf.lua
-nnoremap <silent><leader>dd :lua lsp_diagnostic_indicators_toggle()<CR>
+nnoremap <silent> <leader>dd :lua lsp_diagnostic_indicators_toggle()<CR>
 
 " compe
 luafile ~/.config/nvim/plug/lang/compe/conf.lua
