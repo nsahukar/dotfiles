@@ -112,7 +112,7 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 " CursorLine highlight applied in current window only
-augroup CursorLine
+augroup cursor_line
 	au!
 	au VimEnter,WinEnter,BufEnter * setlocal cursorline
 	au Winleave * setlocal nocursorline
@@ -128,7 +128,7 @@ set noexpandtab		" Always use tabs instead of space charaters (noet)
 set autoindent		" Copy indent from current line when starting a new line (ai)
 set smartindent 	" Smart auto-indenting for programs
 " lua
-augroup CursorLine
+augroup tabs_lua
 	au!
 	au BufRead,BufNewFile *.lua setlocal tabstop=2
 	au BufRead,BufNewFile *.lua setlocal shiftwidth=2
@@ -287,6 +287,12 @@ command -nargs=? -complete=dir Files call FindFiles(<q-args>)
 " *** COMMENT ***
 "
 luafile ~/.config/nvim/plug/comment/conf.lua
+" set commentstring
+" cpp
+augroup set_commentstring_cpp
+	au!
+	au BufEnter *.cpp,*.h :lua vim.api.nvim_buf_set_option(0, "commentstring", "// %s")
+augroup END
 
 
 " *** VIMWIKI ***
