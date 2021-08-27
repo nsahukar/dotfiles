@@ -98,10 +98,12 @@ map <leader>y "+y
 map <leader>p "+p
 
 " Remapping beginning of line, end of line
-nnoremap <M-j> ^
-nnoremap <M-m> $
+nnoremap <M-i> ^
+nnoremap <M-a> $
 
 " Remapping resizing split windows
+nnoremap <M-j> <C-w>-
+nnoremap <M-k> <C-w>+
 nnoremap <M-h> <C-w>>
 nnoremap <M-l> <C-w><
 
