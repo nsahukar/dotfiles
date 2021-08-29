@@ -349,3 +349,36 @@ function! VimwikiLinkHandler(link)
     return 1
   endif
 endfunction
+
+
+" *** TERMINAL ***
+"
+" |- cmd:  <leader>t
+" 	 desc: Mapping <leader>t to toggle terminal.
+" 	 	   Opens in horizontal split below current window. Size 24.
+function! GetTermBufs()
+	 return join(map(filter(range(1, bufnr('$')), 'buflisted(v:val) && bufname(v:val) =~ "term"'), {_, val -> bufname(val)}), " ")
+endfunction
+
+function! OpenTerminal(termBufs)
+	if len(a:termBufs) == 0
+		exe "rightb 24split term://fish"
+	else
+		exe "rightb 24split buffer " . a:termBufs
+	endif
+endfunction
+
+function! CloseTerminal(termBufs)
+	exe "bd! " . a:termBufs
+endfunction
+
+function! ToggleTerminal()
+	let termBufs = GetTermBufs()
+	if len(termBufs) > 0 
+		call CloseTerminal(termBufs)
+	else
+		call OpenTerminal(termBufs)
+	endif
+endfunction
+
+nnoremap <silent> <leader>t :call ToggleTerminal()<CR>
