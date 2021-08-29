@@ -31,3 +31,9 @@ set -x FZF_DEFAULT_COMMAND 'rg --files --hidden -g "!.git"'
 #   set -Ux SSH_AUTH_SOCK $SSH_AUTH_SOCK
 #   set -Ux SSH_AGENT_PID $SSH_AGENT_PID
 # end
+
+
+# ALIAS
+#
+# always open emacs without window (i.e. in terminal)
+alias emacs "emacs -nw"
