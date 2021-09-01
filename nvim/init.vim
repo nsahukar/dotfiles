@@ -315,7 +315,7 @@ function! GetWikiBufs()
 endfunction
 
 function! OpenTodosDrawer()
-	exe ":rightb vsplit " . g:todoIndex . " | vert resize 40"
+	exe ":rightb 40vsplit " . g:todoIndex
 endfunction
 
 function! CloseTodosDrawer(todoBufs)
@@ -353,6 +353,9 @@ endfunction
 
 " *** TERMINAL ***
 "
+" remapping ESC in terminal mode to exit terminal mode
+tnoremap <Esc> <C-\><C-n>
+
 " |- cmd:  <leader>t
 " 	 desc: Mapping <leader>t to toggle terminal.
 " 	 	   Opens in horizontal split below current window. Size 24.
