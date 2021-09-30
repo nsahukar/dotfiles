@@ -37,3 +37,9 @@ set -x FZF_DEFAULT_COMMAND 'rg --files --hidden -g "!.git"'
 #
 # always open emacs without window (i.e. in terminal)
 alias emacs "emacs -nw"
+
+
+# STARSHIP
+#
+# init script
+starship init fish | source
