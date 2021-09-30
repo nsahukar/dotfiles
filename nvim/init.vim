@@ -130,11 +130,8 @@ set noexpandtab		" Always use tabs instead of space charaters (noet)
 set autoindent		" Copy indent from current line when starting a new line (ai)
 set smartindent 	" Smart auto-indenting for programs
 " lua
-augroup tabs_lua
 augroup tabs_lang
 	au!
-	au BufRead,BufNewFile *.lua setlocal tabstop=2
-	au BufRead,BufNewFile *.lua setlocal shiftwidth=2
 	au BufRead,BufNewFile *.lua,*.html,*.js setlocal tabstop=2
 	au BufRead,BufNewFile *.lua,*.html,*.js setlocal shiftwidth=2
 augroup END
