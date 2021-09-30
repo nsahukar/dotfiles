@@ -1,45 +1,21 @@
-# *** PATHS ***
-#
+# HOMEBREW
+set -x BREW_PATH /usr/local/sbin
+
+# LLVM
+set -x LLVM_PATH /usr/local/opt/llvm/bin
+
 # Golang
 set -x GOROOT /usr/local/go
 set -x GOPATH $HOME/Developer/go
 set -x GOBIN $HOME/Developer/go/bin
 
-# Rust -> Cargo
-set -x CARGOPATH $HOME/.cargo/bin
-
 # NGiNX
-set -x NGINXPATH /usr/local/nginx/sbin
+# set -x NGINXPATH /usr/local/nginx/sbin
 
 # Java
-set -x JAVA_HOME /usr/lib/jvm/default
-
-# Append paths
-set PATH $PATH $GOROOT/bin $GOBIN $CARGOPATH $NGINXPATH
-
+# set -x JAVA_HOME /usr/lib/jvm/default
 
 # FZF
-#
-# Include hidden files in search (excluding some)
 set -x FZF_DEFAULT_COMMAND 'rg --files --hidden -g "!.git"'
 
-
-# SSH-AGENT
-#
-# if test -z (pgrep ssh-agent)
-#   eval (ssh-agent -c)
-#   set -Ux SSH_AUTH_SOCK $SSH_AUTH_SOCK
-#   set -Ux SSH_AGENT_PID $SSH_AGENT_PID
-# end
-
-
-# ALIAS
-#
-# always open emacs without window (i.e. in terminal)
-alias emacs "emacs -nw"
-
-
-# STARSHIP
-#
-# init script
-starship init fish | source
+set PATH $PATH $BREW_PATH $LLVM_PATH $GOROOT/bin $GOBIN 

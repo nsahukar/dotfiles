@@ -358,16 +358,16 @@ tnoremap <Esc> <C-\><C-n>
 
 " |- cmd:  <leader>t
 " 	 desc: Mapping <leader>t to toggle terminal.
-" 	 	   Opens in horizontal split below current window. Size 24.
+" 	 	   Opens in horizontal split below current window. Size 12.
 function! GetTermBufs()
 	 return join(map(filter(range(1, bufnr('$')), 'buflisted(v:val) && bufname(v:val) =~ "term"'), {_, val -> bufname(val)}), " ")
 endfunction
 
 function! OpenTerminal(termBufs)
 	if len(a:termBufs) == 0
-		exe "rightb 24split term://fish"
+		exe "rightb 12split term://fish"
 	else
-		exe "rightb 24split buffer " . a:termBufs
+		exe "rightb 12split buffer " . a:termBufs
 	endif
 endfunction
 
