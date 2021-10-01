@@ -39,6 +39,15 @@ set -x FZF_DEFAULT_COMMAND 'rg --files --hidden -g "!.git"'
 alias emacs "emacs -nw"
 
 
+# FUNCTIONS
+#
+# swap files
+function swap
+	set TMPFILE "tmp"
+	mv $argv[1] $TMPFILE && mv $argv[2] $argv[1] && mv $TMPFILE $argv[2]
+end
+
+
 # STARSHIP
 #
 # init script
