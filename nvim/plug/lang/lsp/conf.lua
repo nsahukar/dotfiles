@@ -35,7 +35,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 
 -- Enable the following language servers
 -- local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver' }
-local servers = { 'clangd', 'gopls', 'tsserver', 'html', 'cssls', 'tailwindcss' }
+local servers = { 'clangd', 'gopls', 'tsserver', 'html', 'cssls' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { 
 	  on_attach = on_attach,
