@@ -90,8 +90,8 @@ inoremap <Right> <ESC>:echoe "Use l"<CR>
 inoremap <Up>    <ESC>:echoe "Use k"<CR>
 inoremap <Down>  <ESC>:echoe "Use j"<CR>
 
-" Mapping to delete current word in insert mode
-inoremap <silent> <M-BS> <ESC>:normal bdw<CR>a
+" Remapping to delete current word in insert mode
+inoremap <M-BS> <C-w>
 
 " Simple copy, paste from system clipboard, using '+' register here
 map <leader>y "+y
@@ -161,6 +161,8 @@ Plug 'hrsh7th/nvim-compe'
 Plug 'hrsh7th/vim-vsnip'
 " Show function signature
 Plug 'ray-x/lsp_signature.nvim'
+" ALE (Asynchronous Lint Engine)
+Plug 'dense-analysis/ale'
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Toggle comments in neovim
@@ -236,7 +238,7 @@ hi Pmenu guibg=#212121 guifg=#AFA89D
 hi PmenuSel guibg=#C6B6EE guifg=#000000
 
 
-" *** LANGUAGE SERVERS AND AUTOCOMPLETION ***
+" *** LANGUAGE SERVERS, AUTOCOMPLETION, LINTERS AND FIXERS ***
 "
 " lsp
 luafile ~/.config/nvim/plug/lang/lsp/conf.lua
@@ -254,6 +256,10 @@ set shortmess+=c
 " vsnip
 " If you want to use snippet for multiple filetypes, you can `g:vsnip_filetypes` for it.
 let g:vsnip_filetypes = {}
+
+" ALE
+let g:ale_fixers = ['prettier', 'eslint']
+let g:ale_linters_explicit = 1
 
 " treesitter
 luafile ~/.config/nvim/plug/lang/treesitter/conf.lua
