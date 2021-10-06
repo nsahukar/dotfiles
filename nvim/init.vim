@@ -101,7 +101,15 @@ map <leader>p "+p
 noremap <M-a> ^
 noremap <M-i> $
 
-" Remapping switching between tabs
+" Mapping to move lines
+nnoremap <silent><M-j> :m .+1<CR>==
+nnoremap <silent><M-k> :m .-2<CR>==
+inoremap <silent><A-j> <Esc>:m .+1<CR>==gi
+inoremap <silent><A-k> <Esc>:m .-2<CR>==gi
+vnoremap <silent><A-j> :m '>+1<CR>gv=gv
+vnoremap <silent><A-k> :m '<-2<CR>gv=gv
+
+" Mapping switching between tabs
 nnoremap <silent><Tab> :tabnext<CR>
 nnoremap <silent><S-Tab> :tabprev<CR>
 nnoremap <leader>1 1gt
