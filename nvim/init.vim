@@ -98,8 +98,21 @@ map <leader>y "+y
 map <leader>p "+p
 
 " Remapping beginning of line, end of line
-nnoremap <M-i> ^
-nnoremap <M-a> $
+noremap <M-a> ^
+noremap <M-i> $
+
+" Remapping switching between tabs
+nnoremap <silent><Tab> :tabnext<CR>
+nnoremap <silent><S-Tab> :tabprev<CR>
+nnoremap <leader>1 1gt
+nnoremap <leader>2 2gt
+nnoremap <leader>3 3gt
+nnoremap <leader>4 4gt
+nnoremap <leader>5 5gt
+nnoremap <leader>6 6gt
+nnoremap <leader>7 7gt
+nnoremap <leader>8 8gt
+nnoremap <leader>9 9gt
 
 " Remapping resizing split windows
 nnoremap <M-j> <C-w>-
