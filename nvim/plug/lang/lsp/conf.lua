@@ -23,7 +23,7 @@ local on_attach = function(_client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.completion.completionItem.resolveSupport = {
   properties = {
@@ -48,7 +48,7 @@ vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
 
 -- Set completeopt to have a better completion experience
 -- vim.o.completeopt="menuone,noinsert"
-vim.o.completeopt="menuone,noselect,noinsert"
+-- vim.o.completeopt="menuone,noselect,noinsert"
 
 
 -- Control diagnostics

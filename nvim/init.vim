@@ -62,7 +62,7 @@ set smartcase
 set incsearch
 
 " Stop the highlighting (incsearch)
-map <leader>h :noh<CR>
+map <silent><leader>h :noh<CR>
 
 " Unbind some useless/annoying default key bindings.
 nmap Q <Nop> " 'Q' in normal mode enters Ex mode. You almost never want this.
@@ -176,10 +176,18 @@ Plug 'rktjmp/lush.nvim'
 
 " LSP (Native)
 Plug 'neovim/nvim-lspconfig'
-" Compe (Auto Completion)
-Plug 'hrsh7th/nvim-compe'
 " Vsnip (VSCode LSPs' snippet feature)
 Plug 'hrsh7th/vim-vsnip'
+" Cmp (A completion engine)
+Plug 'hrsh7th/nvim-cmp'
+" Cmp-nvim-lsp (nvim-cmp source for neovim LSP)
+Plug 'hrsh7th/cmp-nvim-lsp'
+" Cmp-vsnip (nvim-cmp source for vim-vsnip)
+Plug 'hrsh7th/cmp-vsnip'
+" Cmp-buffer (nvim-cmp source for buffer words)
+Plug 'hrsh7th/cmp-buffer'
+" Cmp-path (nvim-cmp source for filesystem paths)
+Plug 'hrsh7th/cmp-path'
 " Show function signature
 Plug 'ray-x/lsp_signature.nvim'
 " ALE (Asynchronous Lint Engine)
@@ -265,14 +273,10 @@ hi PmenuSel guibg=#C6B6EE guifg=#000000
 luafile ~/.config/nvim/plug/lang/lsp/conf.lua
 nnoremap <silent> <leader>dd :lua lsp_diagnostic_indicators_toggle()<CR>
 
-" compe
-luafile ~/.config/nvim/plug/lang/compe/conf.lua
-" inoremap <silent><expr> <C-Space> compe#complete()
-" inoremap <silent><expr> <CR>      compe#confirm('<CR>')
-" inoremap <silent><expr> <C-e>     compe#close('<C-e>')
-" inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
-" inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
-set shortmess+=c
+" cmp
+set completeopt=menu,menuone,noselect
+luafile ~/.config/nvim/plug/lang/cmp/conf.lua
+" set shortmess+=c
 
 " vsnip
 " If you want to use snippet for multiple filetypes, you can `g:vsnip_filetypes` for it.
