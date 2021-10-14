@@ -164,12 +164,14 @@ augroup END
 call plug#begin(stdpath('data') . '/plugged')
 
 
-" Lightline
-Plug 'itchyny/lightline.vim'
+" Lualine
+Plug 'hoob3rt/lualine.nvim'
+" Luatab
+Plug 'alvarosevilla95/luatab.nvim'
 
-" Iceberg colorscheme
-Plug 'cocopon/iceberg.vim'
-" Jellybeans colorscheme
+" Gruvbox colorscheme (lush)
+Plug 'ellisonleao/gruvbox.nvim'
+" Jellybeans colorscheme (lush)
 Plug 'metalelf0/jellybeans-nvim'
 " Lush (Colorscheme creation aid)
 Plug 'rktjmp/lush.nvim'
@@ -216,39 +218,9 @@ Plug 'vimwiki/vimwiki'
 call plug#end()
 
 
-" *** LIGHTLINE ***
-"
-" performance optimization
-set ttimeout ttimeoutlen=50
-" disabling showing default vim modes
-set noshowmode
-" mods
-let g:lightline = {
-    \ 'colorscheme': 'darcula',
-	\ 'active': {
-	\ 	'left': [ [ 'mode', 'paste' ],
-	\ 			  [ 'readonly', 'filename', 'modified' ] ]
-	\ },
- 	\ 'component': {
- 	\   'lineinfo': '%3l:%-2v',
- 	\ },
- 	\ 'component_function': {
- 	\   'readonly': 'LightlineReadonly',
- 	\   'fugitive': 'LightlineFugitive',
- 	\ },
- 	\ 'separator': { 'left': '', 'right': '' },
- 	\ 'subseparator': { 'left': '⏐', 'right': '⏐' }
- 	\ }
-function! LightlineReadonly()
-	return &readonly ? '' : ''
-endfunction
-function! LightlineFugitive()
-	if exists('*FugitiveHead')
-		let branch = FugitiveHead()
-		return branch !=# '' ? ''.branch : ''
-	endif
-	return ''
-endfunction
+" *** LUALINE AND LUATAB ***
+luafile ~/.config/nvim/plug/lualine/conf.lua
+luafile ~/.config/nvim/plug/luatab/conf.lua
 
 
 " *** COLOR SCHEME ***
