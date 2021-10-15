@@ -198,6 +198,8 @@ Plug 'dense-analysis/ale'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Toggle comments in neovim
 Plug 'terrortylor/nvim-comment'
+" Surround (parentheses, brackets, quotes, XML tags, and more)
+Plug 'tpope/vim-surround'
 " Golang
 Plug 'golang/vscode-go'
 
