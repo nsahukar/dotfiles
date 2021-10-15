@@ -3,6 +3,12 @@
 " If you open this file in Vim, it'll be syntax highlighted for you.
 
 " *** BASIC ***
+"
+" Map leader key to space
+let mapleader = " "
+
+" Use TUI colors
+set termguicolors
 
 " Vim is based on Vi. Setting `nocompatible` switches from the default
 " Vi-compatibility mode and enables useful Vim functionality. This
@@ -101,12 +107,15 @@ call plug#begin('~/.vim/plugged')
 " Lightline
 Plug 'itchyny/lightline.vim'
 
-" Nord Color Scheme
-Plug 'arcticicestudio/nord-vim'
+" Tender
+Plug 'jacoborus/tender.vim'
 
 " FZF
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+
+" Fern
+Plug 'lambdalisue/fern.vim'
 
 
 " Initialize plugin system
@@ -127,7 +136,7 @@ let g:lightline = {
 
 " *** COLOR SCHEME ***
 
-colorscheme nord
+colorscheme tender
 
 
 " *** FZF ***
@@ -142,59 +151,33 @@ command! -bang -nargs=* Rg
 " " *** FERN ***
 " 
 " " Disable netrw.
-" let g:loaded_netrw  = 1
-" let g:loaded_netrwPlugin = 1
-" let g:loaded_netrwSettings = 1
-" let g:loaded_netrwFileHandlers = 1
-" 
-" " Using Nerdfont as font renderer
-" let g:fern#renderer = "nerdfont"
-" 
-" " Custom settings and mappings.
-" "let g:fern#disable_default_mappings = 1
-" 
-" " Layout
-" noremap <silent> <Leader>f :Fern . -drawer -reveal=% -toggle -width=35<CR><C-w>=
-" 
-" function! FernInit() abort
-"   nmap <buffer><expr>
-"         \ <Plug>(fern-my-open-expand-collapse)
-"         \ fern#smart#leaf(
-"         \   "\<Plug>(fern-action-open:select)",
-"         \   "\<Plug>(fern-action-expand)",
-"         \   "\<Plug>(fern-action-collapse)",
-"         \ )
-" "  nmap <buffer> <CR> <Plug>(fern-my-open-expand-collapse)
-" "  nmap <buffer> <2-LeftMouse> <Plug>(fern-my-open-expand-collapse)
-"   nmap <buffer> n <Plug>(fern-action-new-path)
-"   nmap <buffer> d <Plug>(fern-action-remove)
-"   nmap <buffer> m <Plug>(fern-action-move)
-"   nmap <buffer> M <Plug>(fern-action-rename)
-"   nmap <buffer> H <Plug>(fern-action-hidden-toggle)
-"   nmap <buffer> r <Plug>(fern-action-reload)
-"   nmap <buffer> x <Plug>(fern-action-mark:toggle)
-"   nmap <buffer> b <Plug>(fern-action-open:split)
-"   nmap <buffer> v <Plug>(fern-action-open:vsplit)
-" "  nmap <buffer><nowait> < <Plug>(fern-action-leave)
-" "  nmap <buffer><nowait> > <Plug>(fern-action-enter)
-" endfunction
-" 
-" function! s:hijack_directory() abort
-"   let path = expand('%:p')
-"   if !isdirectory(path)
-"     return
-"   endif
-"   bwipeout %
-"   execute printf('Fern %s', fnameescape(path))
-" endfunction
-" 
-" augroup FernGroup
-"   autocmd!
-"   autocmd FileType fern call FernInit()
-" augroup END
-" 
-" augroup my-fern-hijack
-"   autocmd!
-"   autocmd BufEnter * ++nested call s:hijack_directory()
-" augroup END
-" 
+let g:loaded_netrw  = 1
+let g:loaded_netrwPlugin = 1
+let g:loaded_netrwSettings = 1
+let g:loaded_netrwFileHandlers = 1
+
+" Using Nerdfont as font renderer
+let g:fern#renderer = "nerdfont"
+
+" Layout
+noremap <silent><Leader>e :Fern . -drawer -reveal=% -toggle -width=35<CR><C-w>=
+
+" Custom settings and mappings.
+" let g:fern#disable_default_mappings = 1
+
+function! s:init_fern() abort
+  " Use 'select' instead of 'edit' for default 'open' action
+  nmap <buffer> <Plug>(fern-action-open) <Plug>(fern-action-open:select)
+  nmap <buffer> n <Plug>(fern-action-new-path)
+  nmap <buffer> d <Plug>(fern-action-remove)
+  nmap <buffer> m <Plug>(fern-action-move)
+  nmap <buffer> M <Plug>(fern-action-rename)
+  nmap <buffer> H <Plug>(fern-action-hidden-toggle)
+  nmap <buffer> r <Plug>(fern-action-reload)
+  nmap <buffer> x <Plug>(fern-action-mark:toggle)
+endfunction
+
+augroup fern-custom
+  autocmd! *
+  autocmd FileType fern call s:init_fern()
+augroup END
