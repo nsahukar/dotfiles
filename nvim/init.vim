@@ -169,6 +169,10 @@ Plug 'hoob3rt/lualine.nvim'
 " Luatab
 Plug 'alvarosevilla95/luatab.nvim'
 
+" Dogrun colorscheme
+Plug 'wadackel/vim-dogrun'
+" Tender colorscheme
+Plug 'jacoborus/tender.vim'
 " Gruvbox colorscheme (lush)
 Plug 'ellisonleao/gruvbox.nvim'
 " Jellybeans colorscheme (lush)
@@ -176,32 +180,51 @@ Plug 'metalelf0/jellybeans-nvim'
 " Lush (Colorscheme creation aid)
 Plug 'rktjmp/lush.nvim'
 
+
 " LSP (Native)
 Plug 'neovim/nvim-lspconfig'
+
+" Luasnip 
+Plug 'L3MON4D3/LuaSnip'
+
 " Vsnip (VSCode LSPs' snippet feature)
-Plug 'hrsh7th/vim-vsnip'
+" Plug 'hrsh7th/vim-vsnip'
+
 " Cmp (A completion engine)
 Plug 'hrsh7th/nvim-cmp'
 " Cmp-nvim-lsp (nvim-cmp source for neovim LSP)
 Plug 'hrsh7th/cmp-nvim-lsp'
+" Cmp-nvim-lua (nvim-cmp source for neovim Lua API)
+Plug 'hrsh7th/cmp-nvim-lua'
 " Cmp-vsnip (nvim-cmp source for vim-vsnip)
-Plug 'hrsh7th/cmp-vsnip'
+" Plug 'hrsh7th/cmp-vsnip'
 " Cmp-buffer (nvim-cmp source for buffer words)
 Plug 'hrsh7th/cmp-buffer'
 " Cmp-path (nvim-cmp source for filesystem paths)
 Plug 'hrsh7th/cmp-path'
+" Cmp_luasnip (luasnip completion source for nvim-cmp)
+Plug 'saadparwaiz1/cmp_luasnip'
+
 " Show function signature
-Plug 'ray-x/lsp_signature.nvim'
+" Plug 'ray-x/lsp_signature.nvim'
+
 " ALE (Asynchronous Lint Engine)
 Plug 'dense-analysis/ale'
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+Plug 'nvim-treesitter/nvim-treesitter-refactor'
 " Toggle comments in neovim
 Plug 'terrortylor/nvim-comment'
+
+" Commentary (comment stuff out)
+" Plug 'tpope/vim-commmentary'
+
 " Surround (parentheses, brackets, quotes, XML tags, and more)
 Plug 'tpope/vim-surround'
 " Golang
-Plug 'golang/vscode-go'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
 
 " Telescope (Extendable fuzzy finder)
 Plug 'nvim-lua/popup.nvim'
@@ -211,6 +234,9 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
 " Dev Icons (nvim)
 Plug 'kyazdani42/nvim-web-devicons'
+
+" Fern
+Plug 'lambdalisue/fern.vim'
 
 " VimWiki
 Plug 'vimwiki/vimwiki'
@@ -227,25 +253,43 @@ luafile ~/.config/nvim/plug/luatab/conf.lua
 
 " *** COLOR SCHEME ***
 "
-colorscheme jellybeans-nvim
+colorscheme tender
 
 " Minor color adjustments
 "
 " |- normal
-hi Normal guibg=#131313
+hi Normal guibg=#101010 guifg=#E3F2FD
+" |- comment
+" hi Comment guifg=#333333
+" |- linenr
+" hi LineNr guibg=#070707
 " |- cursorline
 hi CursorLine guibg=#191919
 " |- pmenu
-hi Pmenu guibg=#212121 guifg=#AFA89D
+hi Pmenu guibg=#242424 guifg=#AFA89D
 " |- pmenusel
-hi PmenuSel guibg=#C6B6EE guifg=#000000
+hi PmenuSel guibg=#302028 ctermbg=48 guifg=#F0A0C0 ctermfg=48 gui=NONE cterm=NONE
+" |- visual
+" hi Visual guibg=#2A2E46 ctermbg=48 gui=NONE cterm=NONE
+" |- search
+" hi Search guibg=#302028 ctermbg=48 guifg=#F0A0C0 ctermfg=48
+" |- incsearch
+" hi IncSearch guibg=#F0A0C0 ctermbg=48
+" |- identifier
+hi Identifier guifg=#B48EAD
+" |- type
+hi Statement guifg=#5e81ac
+" |- string
+hi String guifg=#A3BE8C
+" |- operator
+hi Operator guifg=#BF616A
 
 
 " *** LANGUAGE SERVERS, AUTOCOMPLETION, LINTERS AND FIXERS ***
 "
 " lsp
 luafile ~/.config/nvim/plug/lang/lsp/conf.lua
-nnoremap <silent> <leader>dd :lua lsp_diagnostic_indicators_toggle()<CR>
+nnoremap <silent><leader>dd :lua lsp_diagnostic_indicators_toggle()<CR>
 
 " cmp
 set completeopt=menu,menuone,noselect
@@ -254,7 +298,7 @@ luafile ~/.config/nvim/plug/lang/cmp/conf.lua
 
 " vsnip
 " If you want to use snippet for multiple filetypes, you can `g:vsnip_filetypes` for it.
-let g:vsnip_filetypes = {}
+" let g:vsnip_filetypes = {}
 
 " ALE
 let g:ale_fixers = ['prettier', 'eslint']
@@ -302,6 +346,41 @@ augroup set_commentstring_cpp
 augroup END
 
 
+" *** FERN ***
+"
+" Disable netrw.
+let g:loaded_netrw  = 1
+let g:loaded_netrwPlugin = 1
+let g:loaded_netrwSettings = 1
+let g:loaded_netrwFileHandlers = 1
+
+" Using Nerdfont as font renderer
+let g:fern#renderer = "nerdfont"
+
+" Layout
+noremap <silent><leader>ee :Fern . -drawer -reveal=% -toggle -width=35<CR><C-w>=
+
+" Custom settings and mappings.
+let g:fern#disable_default_mappings = 1
+
+function! s:init_fern() abort
+	nmap <buffer> <S-Tab> <Plug>(fern-action-collapse)
+	nmap <buffer> <Tab> <Plug>(fern-action-open-or-expand)
+  	nmap <buffer> n <Plug>(fern-action-new-path)
+  	nmap <buffer> d <Plug>(fern-action-remove)
+  	nmap <buffer> m <Plug>(fern-action-move)
+  	nmap <buffer> M <Plug>(fern-action-rename)
+  	nmap <buffer> H <Plug>(fern-action-hidden-toggle)
+  	nmap <buffer> r <Plug>(fern-action-reload)
+  	nmap <buffer> x <Plug>(fern-action-mark:toggle)
+endfunction
+
+augroup fern-custom
+  autocmd! *
+  autocmd FileType fern call s:init_fern()
+augroup END
+
+
 " *** VIMWIKI ***
 "
 " custom path and index
@@ -336,7 +415,7 @@ function! ToggleTodosDrawer()
 	endif
 endfunction
 
-nnoremap <silent> <leader>ww :call ToggleTodosDrawer()<CR>
+nnoremap <silent><leader>ww :call ToggleTodosDrawer()<CR>
 
 " overriding 'VimwikiLinkHandler' to open always
 " open file in new tab.
@@ -389,4 +468,4 @@ function! ToggleTerminal()
 	endif
 endfunction
 
-nnoremap <silent> <leader>t :call ToggleTerminal()<CR>
+nnoremap <silent><leader>t :call ToggleTerminal()<CR>

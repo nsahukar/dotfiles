@@ -1,7 +1,7 @@
 local nvim_lsp = require('lspconfig')
 local on_attach = function(_client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-  require "lsp_signature".on_attach()
+  -- require "lsp_signature".on_attach()
 
   local opts = { noremap=true, silent=true }
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
@@ -39,7 +39,7 @@ local servers = { 'clangd', 'gopls', 'tsserver', 'html', 'cssls' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { 
 	  on_attach = on_attach,
-  	  capabilities = capabilities,
+  	capabilities = capabilities,
   }
 end
 
