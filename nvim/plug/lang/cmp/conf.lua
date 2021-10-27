@@ -1,4 +1,5 @@
 local cmp = require'cmp'
+local lspkind = require'lspkind'
 
 cmp.setup({
 	snippet = {
@@ -11,8 +12,8 @@ cmp.setup({
 		end,
 	},
 	mapping = {
-		['<C-d>'] = cmp.mapping.scroll_docs(-4),
-		['<C-f>'] = cmp.mapping.scroll_docs(4),
+		['<C-j>'] = cmp.mapping.scroll_docs(-4),
+		['<C-k>'] = cmp.mapping.scroll_docs(4),
 		['<C-Space>'] = cmp.mapping.complete(),
 		['<C-e>'] = cmp.mapping.close(),
 		['<CR>'] = cmp.mapping.confirm({ select = true }),
@@ -33,8 +34,24 @@ cmp.setup({
 	},
 	sources = {
 	  { name = 'nvim_lsp' },
-	  { name = 'luasnip' },
-	  { name = 'buffer' },
-	  { name = 'path' },
-	}
+		{ name = 'path' },
+		{ name = 'luasnip' },
+	  { name = 'buffer', keyword_length = 3 },
+	},
+	formatting = {
+		format = lspkind.cmp_format {
+			with_text = true,
+			menu = {
+				nvim_lsp = "[LSP]",
+				path = "[path]",
+				luasnip = "[snip]",
+				buffer = "[buf]",
+			},
+		},
+	},
+	preselect = cmp.PreselectMode.None,
+	experimental = {
+		native_menu = false,
+		ghost_text = true,
+	},
 })

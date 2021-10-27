@@ -183,6 +183,8 @@ Plug 'rktjmp/lush.nvim'
 
 " LSP (Native)
 Plug 'neovim/nvim-lspconfig'
+" LspKind (adds vscode-like pictograms to neovim built-in lsp
+Plug 'onsails/lspkind-nvim'
 
 " Luasnip 
 Plug 'L3MON4D3/LuaSnip'
@@ -209,7 +211,8 @@ Plug 'saadparwaiz1/cmp_luasnip'
 " Plug 'ray-x/lsp_signature.nvim'
 
 " ALE (Asynchronous Lint Engine)
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
+
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
@@ -224,6 +227,8 @@ Plug 'terrortylor/nvim-comment'
 Plug 'tpope/vim-surround'
 " Golang
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" Rust
+Plug 'rust-lang/rust.vim'
 
 
 " Telescope (Extendable fuzzy finder)
@@ -234,9 +239,8 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
 " Dev Icons (nvim)
 Plug 'kyazdani42/nvim-web-devicons'
-
-" Fern
-Plug 'lambdalisue/fern.vim'
+" Nvim-tree (file explorer)
+Plug 'kyazdani42/nvim-tree.lua'
 
 " VimWiki
 Plug 'vimwiki/vimwiki'
@@ -301,8 +305,8 @@ luafile ~/.config/nvim/plug/lang/cmp/conf.lua
 " let g:vsnip_filetypes = {}
 
 " ALE
-let g:ale_fixers = ['prettier', 'eslint']
-let g:ale_linters_explicit = 1
+" let g:ale_fixers = ['prettier', 'eslint']
+" let g:ale_linters_explicit = 1
 
 " treesitter
 luafile ~/.config/nvim/plug/lang/treesitter/conf.lua
@@ -346,39 +350,8 @@ augroup set_commentstring_cpp
 augroup END
 
 
-" *** FERN ***
-"
-" Disable netrw.
-let g:loaded_netrw  = 1
-let g:loaded_netrwPlugin = 1
-let g:loaded_netrwSettings = 1
-let g:loaded_netrwFileHandlers = 1
-
-" Using Nerdfont as font renderer
-let g:fern#renderer = "nerdfont"
-
-" Layout
-noremap <silent><leader>ee :Fern . -drawer -reveal=% -toggle -width=35<CR><C-w>=
-
-" Custom settings and mappings.
-let g:fern#disable_default_mappings = 1
-
-function! s:init_fern() abort
-	nmap <buffer> <S-Tab> <Plug>(fern-action-collapse)
-	nmap <buffer> <Tab> <Plug>(fern-action-open-or-expand)
-  	nmap <buffer> n <Plug>(fern-action-new-path)
-  	nmap <buffer> d <Plug>(fern-action-remove)
-  	nmap <buffer> m <Plug>(fern-action-move)
-  	nmap <buffer> M <Plug>(fern-action-rename)
-  	nmap <buffer> H <Plug>(fern-action-hidden-toggle)
-  	nmap <buffer> r <Plug>(fern-action-reload)
-  	nmap <buffer> x <Plug>(fern-action-mark:toggle)
-endfunction
-
-augroup fern-custom
-  autocmd! *
-  autocmd FileType fern call s:init_fern()
-augroup END
+" *** NVIM-TREE ***
+luafile ~/.config/nvim/plug/tree/conf.lua
 
 
 " *** VIMWIKI ***
