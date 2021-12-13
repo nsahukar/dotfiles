@@ -98,16 +98,16 @@ map <leader>y "+y
 map <leader>p "+p
 
 " Remapping beginning of line, end of line
-noremap <M-a> ^
-noremap <M-i> $
+noremap <M-i> ^
+noremap <M-a> $
 
 " Mapping to move lines
 nnoremap <silent><M-j> :m .+1<CR>==
 nnoremap <silent><M-k> :m .-2<CR>==
-inoremap <silent><A-j> <Esc>:m .+1<CR>==gi
-inoremap <silent><A-k> <Esc>:m .-2<CR>==gi
-vnoremap <silent><A-j> :m '>+1<CR>gv=gv
-vnoremap <silent><A-k> :m '<-2<CR>gv=gv
+inoremap <silent><M-j> <Esc>:m .+1<CR>==gi
+inoremap <silent><M-k> <Esc>:m .-2<CR>==gi
+vnoremap <silent><M-j> :m '>+1<CR>gv=gv
+vnoremap <silent><M-k> :m '<-2<CR>gv=gv
 
 " Mapping switching between tabs
 nnoremap <silent><Tab> :tabnext<CR>
@@ -121,6 +121,9 @@ nnoremap <leader>6 6gt
 nnoremap <leader>7 7gt
 nnoremap <leader>8 8gt
 nnoremap <leader>9 9gt
+
+" Changing default split behavior
+set splitbelow splitright
 
 " Remapping resizing split windows
 nnoremap <M-j> <C-w>-
@@ -150,7 +153,7 @@ set shiftwidth=4	" Size of an indentation (sw)
 set noexpandtab		" Always use tabs instead of space charaters (noet)
 set autoindent		" Copy indent from current line when starting a new line (ai)
 set smartindent 	" Smart auto-indenting for programs
-" lua
+" custom tabs for languages
 augroup tabs_lang
 	au!
 	au BufRead,BufNewFile *.lua,*.html,*.js setlocal tabstop=2
@@ -163,6 +166,8 @@ augroup END
 " Specify a directory for plugins
 call plug#begin(stdpath('data') . '/plugged')
 
+" Impatient (Speed up loading lua modules in Neovim to improve startup time
+Plug 'lewis6991/impatient.nvim'
 
 " Lualine
 Plug 'hoob3rt/lualine.nvim'
@@ -179,7 +184,6 @@ Plug 'ellisonleao/gruvbox.nvim'
 Plug 'metalelf0/jellybeans-nvim'
 " Lush (Colorscheme creation aid)
 Plug 'rktjmp/lush.nvim'
-
 
 " LSP (Native)
 Plug 'neovim/nvim-lspconfig'
@@ -248,6 +252,10 @@ Plug 'vimwiki/vimwiki'
 
 " Initialize plugin system
 call plug#end()
+
+
+" *** IMPATIENT ***
+luafile ~/.config/nvim/plug/impatient/conf.lua
 
 
 " *** LUALINE AND LUATAB ***
