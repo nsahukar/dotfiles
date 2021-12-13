@@ -14,8 +14,11 @@ set -x NGINXPATH /usr/local/nginx/sbin
 # Java
 set -x JAVA_HOME /usr/lib/jvm/default
 
+# Android
+set -x ANDROID_SDK_ROOT /home/nix/Downloads/setups/android/sdk
+
 # Append paths
-set PATH $PATH $GOROOT/bin $GOBIN $CARGOPATH $NGINXPATH
+set PATH $PATH $GOROOT/bin $GOBIN $CARGOPATH $NGINXPATH $ANDROID_SDK_ROOT/cmdline-tools/latest/bin $ANDROID_SDK_ROOT/cmdline-tools/tools/bin
 
 
 # FZF
