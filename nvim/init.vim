@@ -322,6 +322,7 @@ luafile ~/.config/nvim/plug/lang/treesitter/conf.lua
 " golang
 luafile ~/.config/nvim/plug/lang/go/conf.lua
 autocmd BufWritePre *.go lua goimports(1000)
+let g:go_def_mapping_enabled=0
 
 
 " *** TELESCOPE ***
