@@ -90,6 +90,60 @@ inoremap <Right> <ESC>:echoe "Use l"<CR>
 inoremap <Up>    <ESC>:echoe "Use k"<CR>
 inoremap <Down>  <ESC>:echoe "Use j"<CR>
 
+" Remapping to delete current word in insert mode
+inoremap <M-BS> <C-w>
+
+" Simple copy, paste from system clipboard, using '+' register here
+map <leader>y "+y
+map <leader>p "+p
+
+" Remapping beginning of line, end of line
+noremap <M-i> ^
+noremap <M-a> $
+
+" Mapping to move lines
+nnoremap <silent><M-j> :m .+1<CR>==
+nnoremap <silent><M-k> :m .-2<CR>==
+inoremap <silent><M-j> <Esc>:m .+1<CR>==gi
+inoremap <silent><M-k> <Esc>:m .-2<CR>==gi
+vnoremap <silent><M-j> :m '>+1<CR>gv=gv
+vnoremap <silent><M-k> :m '<-2<CR>gv=gv
+
+" Mapping switching between tabs
+nnoremap <silent><Tab> :tabnext<CR>
+nnoremap <silent><S-Tab> :tabprev<CR>
+nnoremap <leader>1 1gt
+nnoremap <leader>2 2gt
+nnoremap <leader>3 3gt
+nnoremap <leader>4 4gt
+nnoremap <leader>5 5gt
+nnoremap <leader>6 6gt
+nnoremap <leader>7 7gt
+nnoremap <leader>8 8gt
+nnoremap <leader>9 9gt
+
+" Changing default split behavior
+set splitbelow splitright
+
+" Remapping resizing split windows
+nnoremap <C-Down> <C-w>-
+nnoremap <C-Up> <C-w>+
+nnoremap <C-Left> <C-w>>
+nnoremap <C-Right> <C-w><
+
+" Ramapping moving around split windows
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" CursorLine highlight applied in current window only
+augroup cursor_line
+	au!
+	au VimEnter,WinEnter,BufEnter * setlocal cursorline
+	au Winleave * setlocal nocursorline
+augroup END
+
 
 " *** TAB AND SPACES ***
 
@@ -97,6 +151,13 @@ set tabstop=4		" Size of a hard tabstop (ts)
 set shiftwidth=4	" Size of an indentation (sw)
 set noexpandtab		" Always use tabs instead of space charaters (noet)
 set autoindent		" Copy indent from current line when starting a new line (ai)
+" custom tabs for languages
+augroup tabs_lang
+	au!
+	au BufRead,BufNewFile *.lua,*.html,*.js setlocal tabstop=2
+	au BufRead,BufNewFile *.lua,*.html,*.js setlocal shiftwidth=2
+augroup END
+
 
 " *** PLUGINS ***
 
