@@ -35,13 +35,45 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 
 -- Enable the following language servers
 -- local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver' }
-local servers = { 'rust_analyzer', 'clangd', 'gopls', 'tsserver', 'html', 'cssls' }
+local servers = { 'rust_analyzer', 'clangd', 'gopls', 'sumneko_lua', 'tsserver', 'html', 'cssls' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { 
 	  on_attach = on_attach,
   	capabilities = capabilities,
   }
 end
+
+-- Sumneko-Lua Setup
+local lua_runtime_path = vim.split(package.path, ';')
+-- table.insert(lua_runtime_path, "lua/?.lua")
+-- table.insert(lua_runtime_path, "lua/?/init.lua")
+local sumneko_root_path = "/home/nix/Downloads/setups/lua-language-server"
+local sumneko_binary = "/home/nix/Downloads/setups/lua-language-server/bin/lua-language-server"
+nvim_lsp['sumneko_lua'].setup {
+	cmd = {sumneko_binary , "-E", sumneko_root_path .. "/main.lua"},
+	settings = {
+		Lua = {
+			runtime = {
+				-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+				version = 'LuaJIT',
+				-- Setup your lua path
+				path = lua_runtime_path,
+			},
+			diagnostics = {
+				-- Get the language server to recognize the `vim` global
+				gloabls = {'vim'},
+			},
+			workspace = {
+				-- Make the server aware of Neovim runtime files
+				library = vim.api.nvim_get_runtime_file("", true),
+			},
+			-- Do not send telemetry data containing a randomized but unique identifier
+			telemetry = {
+				enable = false,
+			},
+		},
+	},
+}
 
 -- Map :Format to vim.lsp.buf.formatting()
 -- vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
