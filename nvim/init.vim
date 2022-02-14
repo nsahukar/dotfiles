@@ -211,9 +211,6 @@ Plug 'hrsh7th/cmp-path'
 " Cmp_luasnip (luasnip completion source for nvim-cmp)
 Plug 'saadparwaiz1/cmp_luasnip'
 
-" Show function signature
-" Plug 'ray-x/lsp_signature.nvim'
-
 " ALE (Asynchronous Lint Engine)
 " Plug 'dense-analysis/ale'
 
@@ -223,10 +220,6 @@ Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'nvim-treesitter/nvim-treesitter-refactor'
 " Toggle comments in neovim
 Plug 'terrortylor/nvim-comment'
-
-" Commentary (comment stuff out)
-" Plug 'tpope/vim-commmentary'
-
 " Surround (parentheses, brackets, quotes, XML tags, and more)
 Plug 'tpope/vim-surround'
 " Golang
@@ -247,7 +240,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
 
 " VimWiki
-Plug 'vimwiki/vimwiki'
+" Plug 'vimwiki/vimwiki'
 
 
 " Initialize plugin system
@@ -308,10 +301,6 @@ set completeopt=menu,menuone,noselect
 luafile ~/.config/nvim/plug/lang/cmp/conf.lua
 " set shortmess+=c
 
-" vsnip
-" If you want to use snippet for multiple filetypes, you can `g:vsnip_filetypes` for it.
-" let g:vsnip_filetypes = {}
-
 " ALE
 " let g:ale_fixers = ['prettier', 'eslint']
 " let g:ale_linters_explicit = 1
@@ -361,60 +350,6 @@ augroup END
 
 " *** NVIM-TREE ***
 luafile ~/.config/nvim/plug/tree/conf.lua
-
-
-" *** VIMWIKI ***
-"
-" custom path and index
-let g:vimwiki_list = [{'path': '~/Documents/todos/', 'index': 'launchpad'}]
-
-" modified textwidth for vimwiki buffers
-autocmd BufRead,BufNewFile *.wiki setlocal textwidth=36
-
-" |- cmd:  <leader>ww
-" 	 desc: Remapping default <leader>ww in vimwiki plugin.
-" 	       Now opens in vertical split 40% right side. 
-let todoIndex = "~/Documents/todos/launchpad.wiki"
-
-function! GetWikiBufs()
-	 return join(map(filter(range(1, bufnr('$')), 'buflisted(v:val) && bufname(v:val) =~ ".*\\.wiki"'), {_, val -> bufname(val)}), " ")
-endfunction
-
-function! OpenTodosDrawer()
-	exe ":rightb 40vsplit " . g:todoIndex
-endfunction
-
-function! CloseTodosDrawer(todoBufs)
-	exe "bd! " . a:todoBufs
-endfunction
-
-function! ToggleTodosDrawer()
-	let todoBufs = GetWikiBufs()
-	if len(todoBufs) > 0
-		call CloseTodosDrawer(todoBufs)
-	else
-		call OpenTodosDrawer()
-	endif
-endfunction
-
-nnoremap <silent><leader>ww :call ToggleTodosDrawer()<CR>
-
-" overriding 'VimwikiLinkHandler' to open always
-" open file in new tab.
-function! VimwikiLinkHandler(link)
-  let link = a:link
-  if link !~# '^file:'
-    return 0
-  endif
-  let link_infos = vimwiki#base#resolve_link(link)
-  if link_infos.filename == ''
-    echomsg 'Vimwiki Error: Unable to resolve link!'
-    return 0
-  else
-    exe 'tabnew ' . fnameescape(link_infos.filename)
-    return 1
-  endif
-endfunction
 
 
 " *** TERMINAL ***
