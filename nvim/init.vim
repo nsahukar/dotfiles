@@ -43,7 +43,7 @@ set laststatus=2
 " by default, you can't backspace before the insertion point set with 'i'.
 " This configuration makes backspace behave more reasonably, in that you can
 " backspace over anything.
-set backspace=indent,eol,start
+" set backspace=indent,eol,start
 
 " By default, Vim doesn't let you hide a buffer (i.e. have a buffer that isn't
 " shown in any window) that has unsaved changes. This is to prevent you from "
@@ -218,10 +218,14 @@ Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'nvim-treesitter/nvim-treesitter-refactor'
-" Toggle comments in neovim
-Plug 'terrortylor/nvim-comment'
+
+" Comments in neovim
+Plug 'numToStr/Comment.nvim'
+" Plug 'terrortylor/nvim-comment'
+
 " Surround (parentheses, brackets, quotes, XML tags, and more)
-Plug 'tpope/vim-surround'
+" Plug 'tpope/vim-surround'
+
 " Golang
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " Rust
@@ -250,7 +254,6 @@ call plug#end()
 " *** IMPATIENT ***
 luafile ~/.config/nvim/plug/impatient/conf.lua
 
-
 " *** LUALINE AND LUATAB ***
 luafile ~/.config/nvim/plug/lualine/conf.lua
 luafile ~/.config/nvim/plug/luatab/conf.lua
@@ -262,31 +265,31 @@ colorscheme tender
 
 " Minor color adjustments
 "
-" |- normal
+" normal
 hi Normal guibg=#101010 guifg=#E3F2FD
-" |- comment
-" hi Comment guifg=#333333
-" |- linenr
+" comment
+hi Comment cterm=italic gui=italic
+" linenr
 " hi LineNr guibg=#070707
-" |- cursorline
-hi CursorLine guibg=#191919
-" |- pmenu
+" cursorline
+hi CursorLine guibg=#141414
+" pmenu
 hi Pmenu guibg=#242424 guifg=#AFA89D
-" |- pmenusel
+" pmenusel
 hi PmenuSel guibg=#302028 ctermbg=48 guifg=#F0A0C0 ctermfg=48 gui=NONE cterm=NONE
-" |- visual
+" visual
 " hi Visual guibg=#2A2E46 ctermbg=48 gui=NONE cterm=NONE
-" |- search
+" search
 " hi Search guibg=#302028 ctermbg=48 guifg=#F0A0C0 ctermfg=48
-" |- incsearch
+" incsearch
 " hi IncSearch guibg=#F0A0C0 ctermbg=48
-" |- identifier
+" identifier
 hi Identifier guifg=#B48EAD
-" |- type
+" type
 hi Statement guifg=#5e81ac
-" |- string
+" string
 hi String guifg=#A3BE8C
-" |- operator
+" operator
 hi Operator guifg=#BF616A
 
 
@@ -318,14 +321,14 @@ let g:go_def_mapping_enabled=0
 "
 luafile ~/.config/nvim/plug/telescope/conf.lua
 
-" |- cmd:  Rg <search-string>
-"    pre:  'ripgrep' needed to be installed.
-"    desc: Configuring telescope 'grep_string' to specific needs.
+" cmd:  Rg <search-string>
+" pre:  'ripgrep' needed to be installed.
+" desc: Configuring telescope 'grep_string' to specific needs.
 command -nargs=1 -complete=buffer Rg :Telescope grep_string search=<args>
 
-" |- cmd:  Files [current-working-directory]
-" 	 desc: Configuring telescope 'find_files' to specific needs.
-" 	 	   Now takes optional current working directory.
+" cmd:  Files [current-working-directory]
+" desc: Configuring telescope 'find_files' to specific needs.
+" 	 	Now takes optional current working directory.
 function! FindFiles(cwd)
 	if len(a:cwd) == 0
 		exe ":Telescope find_files"
@@ -342,14 +345,13 @@ command -nargs=? -complete=dir Files call FindFiles(<q-args>)
 luafile ~/.config/nvim/plug/comment/conf.lua
 " set commentstring
 " cpp
-augroup set_commentstring_cpp
-	au!
-	au BufEnter *.cpp,*.h :lua vim.api.nvim_buf_set_option(0, "commentstring", "// %s")
-augroup END
-
+" augroup set_commentstring_cpp
+" 	au!
+" 	au BufEnter *.cpp,*.h :lua vim.api.nvim_buf_set_option(0, "commentstring", "// %s")
+" augroup END
 
 " *** NVIM-TREE ***
-luafile ~/.config/nvim/plug/tree/conf.lua
+" luafile ~/.config/nvim/plug/tree/conf.lua
 
 
 " *** TERMINAL ***
@@ -357,9 +359,9 @@ luafile ~/.config/nvim/plug/tree/conf.lua
 " remapping ESC in terminal mode to exit terminal mode
 tnoremap <Esc> <C-\><C-n>
 
-" |- cmd:  <leader>t
-" 	 desc: Mapping <leader>t to toggle terminal.
-" 	 	   Opens in horizontal split below current window. Size 24.
+" cmd:  <leader>t
+" desc: Mapping <leader>t to toggle terminal.
+" 	 	Opens in horizontal split below current window. Size 24.
 function! GetTermBufs()
 	 return join(map(filter(range(1, bufnr('$')), 'buflisted(v:val) && bufname(v:val) =~ "term"'), {_, val -> bufname(val)}), " ")
 endfunction
