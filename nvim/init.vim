@@ -170,12 +170,10 @@ call plug#begin(stdpath('data') . '/plugged')
 Plug 'lewis6991/impatient.nvim'
 
 " Lualine
-Plug 'hoob3rt/lualine.nvim'
+Plug 'nvim-lualine/lualine.nvim'
 " Luatab
 Plug 'alvarosevilla95/luatab.nvim'
 
-" Dogrun colorscheme
-Plug 'wadackel/vim-dogrun'
 " Tender colorscheme
 Plug 'jacoborus/tender.vim'
 " Gruvbox colorscheme (lush)
@@ -185,16 +183,15 @@ Plug 'metalelf0/jellybeans-nvim'
 " Lush (Colorscheme creation aid)
 Plug 'rktjmp/lush.nvim'
 
+" Cycle listchars
+" Plug 'tjdevries/cyclist.vim'
+
 " LSP (Native)
 Plug 'neovim/nvim-lspconfig'
 " LspKind (adds vscode-like pictograms to neovim built-in lsp
 Plug 'onsails/lspkind-nvim'
-
 " Luasnip 
 Plug 'L3MON4D3/LuaSnip'
-
-" Vsnip (VSCode LSPs' snippet feature)
-" Plug 'hrsh7th/vim-vsnip'
 
 " Cmp (A completion engine)
 Plug 'hrsh7th/nvim-cmp'
@@ -221,7 +218,6 @@ Plug 'nvim-treesitter/nvim-treesitter-refactor'
 
 " Comments in neovim
 Plug 'numToStr/Comment.nvim'
-" Plug 'terrortylor/nvim-comment'
 
 " Surround (parentheses, brackets, quotes, XML tags, and more)
 " Plug 'tpope/vim-surround'
@@ -230,7 +226,6 @@ Plug 'numToStr/Comment.nvim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " Rust
 Plug 'rust-lang/rust.vim'
-
 
 " Telescope (Extendable fuzzy finder)
 Plug 'nvim-lua/popup.nvim'
@@ -245,6 +240,9 @@ Plug 'kyazdani42/nvim-tree.lua'
 
 " VimWiki
 " Plug 'vimwiki/vimwiki'
+
+" Kitty conf syntax
+Plug 'fladson/vim-kitty'
 
 
 " Initialize plugin system
@@ -266,7 +264,9 @@ colorscheme tender
 " Minor color adjustments
 "
 " normal
-hi Normal guibg=#101010 guifg=#E3F2FD
+" hi Normal guibg=#101010 guifg=#E3F2FD
+hi Normal guibg=#101010 guifg=#BDCBD3
+" hi Normal guibg=#101010 guifg=#CCDAE3
 " comment
 hi Comment cterm=italic gui=italic
 " linenr
@@ -351,7 +351,7 @@ luafile ~/.config/nvim/plug/comment/conf.lua
 " augroup END
 
 " *** NVIM-TREE ***
-" luafile ~/.config/nvim/plug/tree/conf.lua
+luafile ~/.config/nvim/plug/tree/conf.lua
 
 
 " *** TERMINAL ***
