@@ -17,9 +17,11 @@
 
 ;; Font
 (set-face-attribute 'default nil 
-  :font "mononoki Nerd Font" 
+  :font "Jetbrains Mono" 
   :height 140)
 
+;; Hack to get the background color in terminal same as terminal
+(set-face-background 'default "undefined")
 
 ;; MELPA
 ;; Enable installation of pacakges from MELPA
