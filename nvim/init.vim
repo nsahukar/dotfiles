@@ -272,7 +272,7 @@ hi Comment cterm=italic gui=italic
 " linenr
 " hi LineNr guibg=#070707
 " cursorline
-hi CursorLine guibg=#141414
+hi CursorLine guibg=#101216
 " pmenu
 hi Pmenu guibg=#242424 guifg=#AFA89D
 " pmenusel
