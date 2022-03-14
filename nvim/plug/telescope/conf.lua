@@ -1,28 +1,11 @@
 require('telescope').setup{
 	defaults = {
+  	-- layout_strategy = 'center',
 		layout_config = {
-			width = 0.95,
-			height = 0.85,
+			width = 0.48,
+			height = 0.36,
 			prompt_position = "top",
-			horizontal = {
-        preview_width = function(_, cols, _)
-          if cols > 200 then
-            return math.floor(cols * 0.4)
-          else
-            return math.floor(cols * 0.6)
-          end
-        end,
-      },
-      vertical = {
-        width = 0.9,
-        height = 0.95,
-        preview_height = 0.5,
-      },
-      flex = {
-        horizontal = {
-          preview_width = 0.9,
-        },
-      },
+			preview_cutoff = 10000,
 		},
 
 		selection_strategy = "reset",
@@ -36,8 +19,17 @@ require('telescope').setup{
 	},
 	pickers = {
 		find_files = {
-			theme = "dropdown"
-		}
+			theme = "dropdown",
+			layout_config = {
+				preview_cutoff = 10000,
+			},
+		},
+		buffers = {
+			theme = "dropdown",
+			layout_config = {
+				preview_cutoff = 10000,
+			},
+		},
 	},
 	extensions = {
 		fzf = {
