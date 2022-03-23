@@ -104,8 +104,8 @@ noremap <M-a> $
 " Mapping to move lines
 nnoremap <silent><M-j> :m .+1<CR>==
 nnoremap <silent><M-k> :m .-2<CR>==
-inoremap <silent><M-j> <Esc>:m .+1<CR>==gi
-inoremap <silent><M-k> <Esc>:m .-2<CR>==gi
+" inoremap <silent><M-j> <Esc>:m .+1<CR>==gi
+" inoremap <silent><M-k> <Esc>:m .-2<CR>==gi
 vnoremap <silent><M-j> :m '>+1<CR>gv=gv
 vnoremap <silent><M-k> :m '<-2<CR>gv=gv
 
@@ -298,6 +298,8 @@ hi Operator guifg=#BF616A
 " lsp
 luafile ~/.config/nvim/plug/lang/lsp/conf.lua
 nnoremap <silent><leader>dd :lua lsp_diagnostic_indicators_toggle()<CR>
+" luasnip
+luafile ~/.config/nvim/plug/luasnip/conf.lua
 
 " cmp
 set completeopt=menu,menuone,noselect
