@@ -19,7 +19,7 @@ super + @space
 	# rofi -show run
 
 # sublime text
-F2
+F1
 	/opt/sublime_text/sublime_text
 
 # make sxhkd reload its configuration files:
@@ -88,8 +88,8 @@ super + {p,b,comma,period}
 	bspc node -f @{parent,brother,first,second}
 
 # focus the next/previous window in the current desktop
-# super + {_,shift + }c
-super + {_,shift + }Tab
+# super + {_,shift + }Tab
+super + {_,shift + }c
 	bspc node -f {next,prev}.local.!hidden.window
 
 # focus the next/previous desktop in the current monitor
@@ -99,6 +99,11 @@ super + bracket{left,right}
 # focus the last node/desktop
 # super + {grave,Tab}
 # 	bspc {node,desktop} -f last
+#
+# ***
+# focus the last node
+super + Tab
+	bspc node -f last
 
 # focus the older or newer node in the focus history
 super + {o,i}
