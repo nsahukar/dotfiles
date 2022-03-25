@@ -1,3 +1,5 @@
+-- local tree_nav = require('nvim-treesitter-refactor.navigation')
+
 require'nvim-treesitter.configs'.setup {
 	highlight = {
 		enable = true,
@@ -16,9 +18,10 @@ require'nvim-treesitter.configs'.setup {
 		navigation = {
 			enable = true,
 			keymaps = {
-				goto_definition = "gnd",
-				list_method_definitions = "gmd",
-				list_type_definitions = "gtd",
+				goto_definition = "god",
+				list_definitions = "ld",
+				list_function_and_method_definitions = "lfd",
+				list_type_definitions = "ltd",
 			}
 		}
 	}
