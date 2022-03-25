@@ -5,8 +5,8 @@ okular '/home/nix/Documents/books/Go/Mihalis Tsoukalos - Mastering Go_ Harness t
 sleep .2
 
 # kitty
-bspc rule -a kitty -o split_ratio=0.36
-kitty &
+bspc rule -a konsole -o split_ratio=0.36
+konsole &
 
 # typora
 bspc node -f @parent

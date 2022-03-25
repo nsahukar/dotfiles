@@ -34,3 +34,5 @@ bspc rule -a Sublime_text state=floating
 # bspc rule -a okular split_ratio=0.6
 # typora
 # bspc rule -a Typora state=floating
+# dolphin
+bspc rule -a dolphin state=floating
