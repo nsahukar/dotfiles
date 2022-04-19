@@ -1,16 +1,12 @@
 # This is Git's per-user configuration file.
 [user]
 	name = Nikhil Sahukar
-	email = nsahukar@gmail.com
+	email = email-id@gmail.com
 [core]
-	excludesfile = /Users/nix/.gitignore_global
+	excludesfile = $HOME/.gitignore
 	editor = /usr/local/bin/nvim
 	pager = cat
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+[merge]
+	tool = kdiff3
 [pager]
 	branch = false
