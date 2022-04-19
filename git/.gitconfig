@@ -6,6 +6,8 @@
 	excludesfile = $HOME/.gitignore
 	editor = /usr/local/bin/nvim
 	pager = cat
+[init]
+	defaultBranch = main
 [merge]
 	tool = kdiff3
 [pager]
