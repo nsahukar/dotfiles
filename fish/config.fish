@@ -41,6 +41,9 @@ set -x FZF_DEFAULT_COMMAND 'rg --files --hidden -g "!.git"'
 # always open emacs without window (i.e. in terminal)
 alias emacs "emacs -nw"
 
+# always list file in descending order of ctime
+alias la "ls -cltra"
+
 
 # FUNCTIONS
 #
