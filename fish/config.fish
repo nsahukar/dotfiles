@@ -21,6 +21,12 @@ set -x ANDROID_SDK_ROOT /home/nix/Downloads/setups/android/sdk
 set PATH $PATH $GOROOT/bin $GOBIN $CARGOPATH $NGINXPATH $ANDROID_SDK_ROOT/cmdline-tools/latest/bin $ANDROID_SDK_ROOT/cmdline-tools/tools/bin
 
 
+# SXHKD 
+# If using X window managers,
+# Set default shell for 'sxhkd' as 'sh'
+set -U SXHKD_SHELL sh
+
+
 # FZF
 #
 # Include hidden files in search (excluding some)
@@ -41,8 +47,11 @@ set -x FZF_DEFAULT_COMMAND 'rg --files --hidden -g "!.git"'
 # always open emacs without window (i.e. in terminal)
 alias emacs "emacs -nw"
 
-# always list file in descending order of ctime
+# list files in descending order of ctime
 alias la "ls -cltra"
+
+# list files in ascending order of name
+alias ll "ls -cl"
 
 
 # FUNCTIONS
