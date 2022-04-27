@@ -9,6 +9,11 @@ bspc rule -a konsole -o split_ratio=0.36
 konsole &
 
 # typora
+# bspc node -f @parent
+# bspc rule -a Typora -o split_ratio=0.6
+# /usr/local/typora/Typora &
+
+# obsidian
 bspc node -f @parent
-bspc rule -a Typora -o split_ratio=0.6
-/usr/local/typora/Typora &
+bspc rule -a obsidian -o split_ratio=0.6
+/usr/bin/obsidian &
