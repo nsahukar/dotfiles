@@ -1,0 +1,8 @@
+# PATH=/usr/share/xsessions
+[Desktop Entry]
+Type=XSession
+Exec=env KDEWM=/usr/bin/bspwm /usr/bin/startplasma-x11
+TryExec=/usr/bin/startplasma-x11
+DesktopNames=KDE
+Name=Plasma (bspwm)
+Comment=Plasma by KDE w/bspwm

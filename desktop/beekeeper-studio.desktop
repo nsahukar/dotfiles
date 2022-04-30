@@ -1,0 +1,10 @@
+# PATH=/usr/share/applications
+[Desktop Entry]
+Name=Beekeeper Studio
+Comment=Open Source SQL Editor and Database Manager
+Exec=/usr/local/beekeeper-studio/Beekeeper-Studio-3.3.8.AppImage
+Terminal=false
+Type=Application
+Icon=/usr/local/beekeeper-studio/resources/icon/beekeeper-studio.svg
+Categories=Development;TextEditor;Utility;
+MimeType=application/sql
