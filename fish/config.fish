@@ -1,5 +1,8 @@
 # *** PATHS ***
 #
+# Local bin
+set -x LOCAL_BIN $HOME/.local/bin
+
 # Golang
 set -x GOROOT /usr/local/go
 set -x GOPATH $HOME/Developer/go
@@ -18,7 +21,7 @@ set -x JAVA_HOME /usr/lib/jvm/default
 set -x ANDROID_SDK_ROOT /home/nix/Downloads/setups/android/sdk
 
 # Append paths
-set PATH $PATH $GOROOT/bin $GOBIN $CARGOPATH $NGINXPATH $ANDROID_SDK_ROOT/cmdline-tools/latest/bin $ANDROID_SDK_ROOT/cmdline-tools/tools/bin
+set PATH $PATH $LOCAL_BIN $GOROOT/bin $GOBIN $CARGOPATH $NGINXPATH $ANDROID_SDK_ROOT/cmdline-tools/latest/bin $ANDROID_SDK_ROOT/cmdline-tools/tools/bin
 
 
 # SXHKD 
