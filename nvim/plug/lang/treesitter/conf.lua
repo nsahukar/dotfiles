@@ -18,10 +18,10 @@ require'nvim-treesitter.configs'.setup {
 		navigation = {
 			enable = true,
 			keymaps = {
-				goto_definition = "god",
-				list_definitions = "ld",
-				list_function_and_method_definitions = "lfd",
-				list_type_definitions = "ltd",
+				-- goto_definition = "god",
+				-- list_definitions = "ld",
+				-- list_function_and_method_definitions = "lfd",
+				-- list_type_definitions = "ltd",
 			}
 		}
 	}
