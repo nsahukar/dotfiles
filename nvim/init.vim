@@ -126,10 +126,10 @@ nnoremap <leader>9 9gt
 set splitbelow splitright
 
 " Remapping resizing split windows
-nnoremap <M-j> <C-w>-
-nnoremap <M-k> <C-w>+
-nnoremap <M-h> <C-w>>
-nnoremap <M-l> <C-w><
+nnoremap <C-Down> <C-w>-
+nnoremap <C-Up> <C-w>+
+nnoremap <C-Left> <C-w>>
+nnoremap <C-Right> <C-w><
 
 " Ramapping moving around split windows
 nnoremap <C-h> <C-w>h
