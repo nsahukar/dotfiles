@@ -26,13 +26,13 @@ bspc rule -a Chromium desktop='^2'
 # kde specific config
 # krunner
 bspc rule -a krunner state=floating
-# klipper - The following rule is NOT WORKING!
-bspc rule -a plasmashell:*:klipper state=floating rectangle='592x592+3048+56'
+# # klipper - The following rule is NOT WORKING!
+# bspc rule -a plasmashell:*:klipper state=floating rectangle='592x592+3048+56'
+# plasmashell
+bspc rule -a plasmashell state=floating sticky=on border=off
 # sublime text
 bspc rule -a Sublime_text state=floating
-# okular
-# bspc rule -a okular split_ratio=0.6
-# typora
-# bspc rule -a Typora state=floating
 # dolphin
 bspc rule -a dolphin state=floating
+# system settings
+bspc rule -a systemsettings state=floating
