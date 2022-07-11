@@ -1,7 +1,5 @@
 " Comments in Vimscript start with a `"`.
 
-" If you open this file in Vim, it'll be syntax highlighted for you.
-
 " *** BASIC ***
 "
 " Map leader key to space
@@ -72,7 +70,7 @@ set noerrorbells visualbell t_vb=
 
 " Enable mouse support. You should avoid relying on this too much, but it can
 " sometimes be convenient.
-" set mouse+=a
+set mouse+=a
 
 " Try to prevent bad habits like using the arrow keys for movement. This is
 " not the only possible bad habit. For example, holding down the h/j/k/l keys
@@ -85,10 +83,10 @@ nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up>    :echoe "Use k"<CR>
 nnoremap <Down>  :echoe "Use j"<CR>
 " ...and in insert mode
-inoremap <Left>  <ESC>:echoe "Use h"<CR>
-inoremap <Right> <ESC>:echoe "Use l"<CR>
-inoremap <Up>    <ESC>:echoe "Use k"<CR>
-inoremap <Down>  <ESC>:echoe "Use j"<CR>
+" inoremap <Left>  <ESC>:echoe "Use h"<CR>
+" inoremap <Right> <ESC>:echoe "Use l"<CR>
+" inoremap <Up>    <ESC>:echoe "Use k"<CR>
+" inoremap <Down>  <ESC>:echoe "Use j"<CR>
 
 " Remapping to delete current word in insert mode
 inoremap <M-BS> <C-w>
@@ -315,7 +313,7 @@ luafile ~/.config/nvim/plug/lang/treesitter/conf.lua
 
 " golang
 luafile ~/.config/nvim/plug/lang/go/conf.lua
-autocmd BufWritePre *.go lua goimports(1000)
+" autocmd BufWritePre *.go lua goimports(1000)
 let g:go_def_mapping_enabled=0
 
 
