@@ -3,6 +3,9 @@
 # Local bin
 set -x LOCAL_BIN $HOME/.local/bin
 
+# Node
+set -x npm_config_prefix $HOME/.local
+
 # Golang
 set -x GOROOT /usr/local/go
 set -x GOPATH $HOME/Developer/go
@@ -32,8 +35,13 @@ set -U SXHKD_SHELL sh
 
 # FZF
 #
-# Include hidden files in search (excluding some)
-set -x FZF_DEFAULT_COMMAND 'rg --files --hidden -g "!.git"'
+# Include hidden files in search (excluding .git, node_modules and some...)
+# set -x FZF_DEFAULT_COMMAND 'rg --files --hidden -g "!.git"'
+set fzf_default_command 'fd --type file --type directory --strip-cwd-prefix --hidden'
+set fzf_alt_c_command 'fd --type directory --strip-cwd-prefix --hidden'
+set -x FZF_DEFAULT_COMMAND $fzf_default_command
+set -x FZF_CTRL_T_COMMAND $fzf_default_command
+set -x FZF_ALT_C_COMMAND $fzf_alt_c_command
 
 
 # SSH-AGENT
@@ -55,6 +63,9 @@ alias la "ls -cltra"
 
 # list files in ascending order of name
 alias ll "ls -cl"
+
+# change to dotfiles directory
+alias cdd "cd ~/Developer/dotfiles"
 
 
 # FUNCTIONS
