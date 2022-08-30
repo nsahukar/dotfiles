@@ -37,7 +37,17 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protoco
 
 -- Configure following language servers with native LSP
 local servers = { 
-  'gopls' 
+  -- gopls
+  -- install: go install golang.org/x/tools/gopls@latest
+  'gopls',
+  
+  -- lua-language-server
+  -- install: sudo pacman -S lua-language-server
+  'sumneko_lua',
+
+  -- pyright
+  -- install: python3 -m pip install --user --upgrade pyright
+  'pyright'
 }
 for _, lang_server in ipairs(servers) do
   lspconfig[lang_server].setup {
