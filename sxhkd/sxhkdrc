@@ -22,10 +22,6 @@ super + @space
 F1
 	/opt/sublime_text/sublime_text
 
-# obsidian
-F2
-	/usr/bin/obsidian
-
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
