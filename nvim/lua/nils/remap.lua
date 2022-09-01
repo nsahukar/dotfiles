@@ -1,6 +1,8 @@
 local nnoremap = require('nils.keymap').nnoremap
 local vnoremap = require('nils.keymap').vnoremap
 local inoremap = require('nils.keymap').inoremap
+local tnoremap = require('nils.keymap').tnoremap
+local terminal = require('nils.terminal')
 
 -- BASIC
 --
@@ -36,3 +38,11 @@ nnoremap('<leader>ff', ':Telescope find_files<CR>')
 nnoremap('<leader>fb', ':Telescope buffers<CR>')
 -- Telescope: find help
 nnoremap('<leader>h', ':Telescope help_tags<CR>')
+
+
+-- TERMINAL
+--
+-- Remapping <ESC> to exit
+tnoremap('<ESC>', '<C-\\><C-n>')
+-- Toggle terminal
+nnoremap('<leader>t', terminal.toggle_terminal)
