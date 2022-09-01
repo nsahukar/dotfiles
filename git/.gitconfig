@@ -1,14 +1,23 @@
 # This is Git's per-user configuration file.
 [user]
+    email = email@gmail.com
 	name = Nikhil Sahukar
-	email = email-id@gmail.com
+
 [core]
 	excludesfile = $HOME/.gitignore
 	editor = /usr/local/bin/nvim
 	pager = cat
+
 [init]
 	defaultBranch = main
+
 [merge]
 	tool = kdiff3
+
 [pager]
 	branch = false
+
+# Custom SSH host for addressing multiple github accounts
+# (Require a separate host entry in ~/.ssh/config)
+[url "git@github.com-username:username/"]
+    insteadOf = git@github.com:username/
