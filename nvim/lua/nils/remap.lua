@@ -20,7 +20,7 @@ nnoremap('<C-j>', '<C-w>j')
 nnoremap('<C-k>', '<C-w>k')
 nnoremap('<C-l>', '<C-w>l')
 -- Copy, paste from system clipboard, using '+' register here
-nnoremap('<leader>y', '"+y')
+vnoremap('<leader>y', '"+y')
 nnoremap('<leader>p', '"+p')
 -- Delete current word in insert mode
 inoremap('<M-BS>', '<C-w>')
