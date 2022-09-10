@@ -26,6 +26,8 @@ bspc rule -a Chromium desktop='^2'
 # kde specific config
 # krunner
 bspc rule -a krunner state=floating
+# rofi
+bspc rule -a Rofi state=floating
 # # klipper - The following rule is NOT WORKING!
 # bspc rule -a plasmashell:*:klipper state=floating rectangle='592x592+3048+56'
 # plasmashell

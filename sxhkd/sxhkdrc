@@ -13,18 +13,19 @@ super + Return
 
 # program launcher
 #
-# krunner
+# rofi
 super + @space
-	krunner
-	# rofi -show run
-
-# sublime text
-F1
-	/opt/sublime_text/sublime_text
+    rofi -show combi -normal-window
+# rofi -show combi -modes combi -combi-modes "window,drun,run"
+# krunner
 
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
+
+# sublime text
+F1
+    /opt/sublime_text/sublime_text
 
 #
 # bspwm hotkeys
@@ -153,4 +154,4 @@ super + alt + shift + {h,j,k,l}
 
 # move a floating window
 super + {Left,Down,Up,Right}
-	bspc node -v {-20 0,0 20,0 -20,20 0}
+	bspc node -v {-1840 0,0 400,0 -400,1840 0}
