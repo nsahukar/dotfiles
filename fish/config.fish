@@ -65,7 +65,18 @@ alias la "ls -cltra"
 alias ll "ls -cl"
 
 # change to dotfiles directory
-alias cdd "cd ~/Developer/dotfiles"
+alias dod "cd ~/Developer/dotfiles/"
+# change to go directory
+alias god "cd ~/Developer/go/src/"
+# change to lua directory
+alias lud "cd ~/Developer/lua/"
+# change to node directory
+alias nod "cd ~/Developer/node/"
+# change to python directory
+alias pyd "cd ~/Developer/python/"
+
+# python3 to py... I'm lazy
+alias py "python3"
 
 
 # FUNCTIONS
@@ -74,6 +85,10 @@ alias cdd "cd ~/Developer/dotfiles"
 function swap
 	set TMPFILE "tmp"
 	mv $argv[1] $TMPFILE && mv $argv[2] $argv[1] && mv $TMPFILE $argv[2]
+end
+# make directory and change into it
+function mkdirt
+    mkdir $argv[1] && cd $argv[1]
 end
 
 
