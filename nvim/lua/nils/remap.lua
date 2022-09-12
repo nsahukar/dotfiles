@@ -1,5 +1,6 @@
 local nnoremap = require('nils.keymap').nnoremap
 local vnoremap = require('nils.keymap').vnoremap
+local xnoremap = require('nils.keymap').xnoremap
 local inoremap = require('nils.keymap').inoremap
 local tnoremap = require('nils.keymap').tnoremap
 local terminal = require('nils.terminal')
@@ -26,6 +27,9 @@ nnoremap('<leader>p', '"+p')
 inoremap('<M-BS>', '<C-w>')
 -- Stop highlighting (search)
 nnoremap('<leader><leader>', ':noh<CR>')
+-- Do not register the selection in clipboard
+-- when pasting on it
+xnoremap('<M-p>', '\"_dp')
 
 
 -- PLUGINS

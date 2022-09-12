@@ -30,6 +30,9 @@ o.relativenumber = true
 -- Minimal number of columns to use for line number
 o.numberwidth = 4
 
+-- Have a global status line at the bottom instead of one for each window
+o.laststatus = 3
+
 
 -- TABS AND INDENTATIONS
 --
