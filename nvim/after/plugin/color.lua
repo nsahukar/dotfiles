@@ -1,7 +1,17 @@
-vim.g.tokyonight_style = "night"
-vim.g.tokyonight_italic_comments = true
-vim.g.tokyonight_transparent = true
-vim.g.tokyonight_transpatent_sidebar = true
+-- vim.g.tokyonight_style = "night"
+-- vim.g.tokyonight_italic_comments = true
+-- vim.g.tokyonight_transparent = true
+-- vim.g.tokyonight_transpatent_sidebar = true
+
+require('tokyonight').setup({
+  style = "night",
+  transparent = true,
+  styles = {
+    comments = "italic",
+    sidebars = "dark",
+    floats = "dark",
+  },
+})
 
 vim.cmd('colorscheme tokyonight')
 
