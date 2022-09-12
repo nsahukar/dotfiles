@@ -47,7 +47,11 @@ local servers = {
 
   -- pyright
   -- install: python3 -m pip install --user --upgrade pyright
-  'pyright'
+  'pyright',
+
+  -- emmet_ls (underscore)
+  -- install: npm install -g emmet-ls (hypen)
+  'emmet_ls',
 }
 for _, lang_server in ipairs(servers) do
   lspconfig[lang_server].setup {
