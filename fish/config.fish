@@ -7,7 +7,8 @@ set -x LOCAL_BIN $HOME/.local/bin
 set -x npm_config_prefix $HOME/.local
 
 # Golang
-set -x GOROOT /usr/local/go
+# set -x GOROOT /usr/local/go
+set -x GOROOT /usr/lib/go
 set -x GOPATH $HOME/Developer/go
 set -x GOBIN $HOME/Developer/go/bin
 
