@@ -49,7 +49,7 @@ super + y
 
 # swap the current node and the biggest window in current desktop
 super + g
-	bspc node -s biggest.local.window
+	bspc node -s biggest.window.local
 
 # rotate siblings clockwise or anti-clockwise
 super + {_,shift +}r
@@ -64,51 +64,52 @@ super + {t,shift + t,f,m}
 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
 # set the node flags
-super + ctrl + {m,x,y,z}
-	bspc node -g {marked,locked,sticky,private}
+# super + ctrl + {m,x,y,z}
+# 	bspc node -g {marked,locked,sticky,private}
 
-# hide floating windows
-super + ctrl + h
+# hide floating windows (minimize)
+super + ctrl + x
 	bspc node any.floating -g hidden
 
-# unhide floating windows
-super + ctrl + s
+# unhide floating windows (expand)
+super + ctrl + m
 	bspc node any.floating.hidden -g hidden=off
 
-# ***
 # set the node layer
 # super + ctrl + {b,n,a}
 # 	bspc node -l {below,normal,above}
 
+
 #
-# focus/swap
+# focus/move/swap
 #
 
 # focus the node in the given direction
-super + {_,shift + }{h,j,k,l}
-	bspc node -{f,s} {west,south,north,east}
+super + {h,j,k,l}
+    bspc node -f {west,south,north,east}
+# move the node in west or east direction
+super + shift + {h,l}
+    bspc node -n {west,east}.window.local
+# swap the node in north or south direction
+super + shift + {j,k}
+    bspc node -s {south,north}
 
 # focus the node for the given path jump
-super + {p,b,comma,period}
-	bspc node -f @{parent,brother,first,second}
+# super + {p,b,comma,period}
+# 	bspc node -f @{parent,brother,first,second}
 
 # focus the next/previous window in the current desktop
 # super + {_,shift + }Tab
 super + {_,shift + }c
-	bspc node -f {next,prev}.local.!hidden.window
+	bspc node -f {prev,next}.!hidden.window.local
 
 # focus the next/previous desktop in the current monitor
 super + bracket{left,right}
 	bspc desktop -f {prev,next}.local
 
-# focus the last node/desktop
-# super + {grave,Tab}
-# 	bspc {node,desktop} -f last
-#
-# ***
 # focus the last node in the current desktop
 super + Tab
-	bspc node -f last.local.!hidden.window
+	bspc node -f last.!hidden.window.local
 
 # focus the older or newer node in the focus history
 super + {o,i}
@@ -120,25 +121,35 @@ super + {o,i}
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,10}'
 
+
 #
-# preselect
+# receptacle/preselection
 #
 
-# preselect the direction
+# receptacle in the preselected direction
 super + ctrl + {h,j,k,l}
-	bspc node -p {west,south,north,east}
+	bspc node -p {west,south,north,east} -i
+
+# pop the last receptacle
+super + ctrl + space
+    bspc node 'any.leaf.!window.local' -k
+
+# send the in focus node to receptacle
+super + p
+    bspc node -n any.leaf.!window.local
 
 # preselect the ratio
-super + ctrl + {1-9}
-	bspc node -o 0.{1-9}
+# super + ctrl + {1-9}
+# 	bspc node -o 0.{1-9}
 
 # cancel the preselection for the focused node
-super + ctrl + space
-	bspc node -p cancel
+# super + ctrl + space
+# 	bspc node -p cancel
 
 # cancel the preselection for the focused desktop
-super + ctrl + shift + space
-	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+# super + ctrl + shift + space
+# 	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
 
 #
 # move/resize
