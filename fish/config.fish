@@ -91,6 +91,10 @@ end
 function mkdirt
     mkdir $argv[1] && cd $argv[1]
 end
+# print length of the given string
+function len
+    string length $argv[1]
+end
 
 
 # STARSHIP
