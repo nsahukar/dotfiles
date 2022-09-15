@@ -14,8 +14,11 @@ super + Return
 # program launcher
 #
 # rofi
-super + @space
+super + space
     rofi -show combi -normal-window
+super + ctrl + space
+    rxrofi
+# rofi -show combi -normal-window
 # rofi -show combi -modes combi -combi-modes "window,drun,run"
 # krunner
 
@@ -131,7 +134,8 @@ super + ctrl + {h,j,k,l}
 	bspc node -p {west,south,north,east} -i
 
 # pop the last receptacle
-super + ctrl + space
+# super + ctrl + space
+super + x
     bspc node 'any.leaf.!window.local' -k
 
 # send the in focus node to receptacle

@@ -19,8 +19,6 @@ bspc config gapless_monocle      true
 
 # Always open chromium in desktop #2
 bspc rule -a Chromium desktop='^2'
-# open any application in a receptacle, if one available
-bspc rule -a *:* node=any.leaf.!window.local
 
 
 # kde specific config
@@ -39,3 +37,8 @@ bspc rule -a Sublime_text state=floating
 bspc rule -a dolphin state=floating
 # system settings
 bspc rule -a systemsettings state=floating
+
+
+# open any application in a receptacle, if one available
+# shifted to .local/bin/rxrofi script
+# bspc rule -a *:* node=any.leaf.!window.local
