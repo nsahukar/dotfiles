@@ -1,6 +1,6 @@
 configuration {
     modes: [combi,calc];
-    combi-modes: [window,drun];
+    combi-modes: [drun,window];
     font: "JetBrains Mono 14";
     terminal: "konsole";
     display-combi: "find";
