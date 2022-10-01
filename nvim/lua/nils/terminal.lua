@@ -6,7 +6,7 @@ local open_terminal = function ()
   --    Create a new terminal buffer
   --        Save buffer number and window id
   if vim.fn.bufexists(t_buf) == 0 then
-    vim.cmd('split | winc j | resize 24 | term')
+    vim.cmd('split | winc J | resize 24 | term')
     t_win = vim.fn.win_getid()
     t_buf = vim.fn.bufnr('%')
 
@@ -15,7 +15,7 @@ local open_terminal = function ()
   --        Save new window id
   else
     if vim.fn.win_gotoid(t_win) == 0 then
-      vim.cmd('sbuffer ' .. t_buf .. ' | winc j | resize 24')
+      vim.cmd('sbuffer ' .. t_buf .. ' | winc J | resize 24')
       t_win = vim.fn.win_getid()
     end
   end
