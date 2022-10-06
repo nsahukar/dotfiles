@@ -75,6 +75,8 @@ alias lud "cd ~/Developer/lua/"
 alias nod "cd ~/Developer/node/"
 # change to python directory
 alias pyd "cd ~/Developer/python/"
+# change to vue directory
+alias vud "cd ~/Developer/vue/"
 
 # python3 to py... I'm lazy
 alias py "python3"
