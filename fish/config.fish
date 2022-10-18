@@ -28,6 +28,13 @@ set -x ANDROID_SDK_ROOT /home/nix/Downloads/setups/android/sdk
 set PATH $PATH $LOCAL_BIN $GOROOT/bin $GOBIN $CARGOPATH $NGINXPATH $ANDROID_SDK_ROOT/cmdline-tools/latest/bin $ANDROID_SDK_ROOT/cmdline-tools/tools/bin
 
 
+# Kvantum theme for Qt5 apps
+set -x QT_STYLE_OVERRIDE kvantum
+# Qt5 applications under non-KDE environments, faking KDE environment
+set -x XDG_CURRENT_DESKTOP KDE
+# set -x QT_QPA_PLATFORMTHEME qt5ct
+
+
 # SXHKD 
 # If using X window managers,
 # Set default shell for 'sxhkd' as 'sh'
@@ -78,8 +85,11 @@ alias pyd "cd ~/Developer/python/"
 # change to vue directory
 alias vud "cd ~/Developer/vue/"
 
-# python3 to py... I'm lazy
+# python3 to py
 alias py "python3"
+
+# lxappearance
+alias lx lxappearance
 
 
 # FUNCTIONS
