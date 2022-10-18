@@ -32,7 +32,6 @@ set PATH $PATH $LOCAL_BIN $GOROOT/bin $GOBIN $CARGOPATH $NGINXPATH $ANDROID_SDK_
 set -x QT_STYLE_OVERRIDE kvantum
 # Qt5 applications under non-KDE environments, faking KDE environment
 set -x XDG_CURRENT_DESKTOP KDE
-# set -x QT_QPA_PLATFORMTHEME qt5ct
 
 
 # SXHKD 
@@ -43,10 +42,13 @@ set -U SXHKD_SHELL sh
 
 # FZF
 #
-# Include hidden files in search (excluding .git, node_modules and some...)
-# set -x FZF_DEFAULT_COMMAND 'rg --files --hidden -g "!.git"'
-set fzf_default_command 'fd --type file --type directory --strip-cwd-prefix --hidden'
-set fzf_alt_c_command 'fd --type directory --strip-cwd-prefix --hidden'
+# By default hidden files are not included in fd search.
+# To include hidden files in search (excluding .git, node_modules and some...)
+#   use -H / --hidden flag (for including hidden files),
+#   along with -E / --exclude flag (for exluding files and dirs)
+# Although here files and dirs are excluded using ~/.fdignore file
+set fzf_default_command 'fd --type file --type directory --strip-cwd-prefix'
+set fzf_alt_c_command 'fd --type directory --strip-cwd-prefix'
 set -x FZF_DEFAULT_COMMAND $fzf_default_command
 set -x FZF_CTRL_T_COMMAND $fzf_default_command
 set -x FZF_ALT_C_COMMAND $fzf_alt_c_command
