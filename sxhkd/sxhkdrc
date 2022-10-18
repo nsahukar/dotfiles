@@ -7,28 +7,38 @@
 # wm independent hotkeys
 #
 
-# terminal emulator
-super + Return
-	konsole
+# suspend system
+ctrl + alt + Delete
+    systemctl suspend
 
-# program launcher
-#
+# make sxhkd reload its configuration files:
+super + Escape
+    pkill -USR1 -x sxhkd
+
 # rofi
 super + space
     rofi -show combi -normal-window
 super + ctrl + space
     rxrofi
-# rofi -show combi -normal-window
-# rofi -show combi -modes combi -combi-modes "window,drun,run"
-# krunner
 
-# make sxhkd reload its configuration files:
-super + Escape
-	pkill -USR1 -x sxhkd
+# terminal emulator
+super + Return
+	kitty
+
+# dolphin
+super + e
+    dolphin
 
 # sublime text
 F1
     /opt/sublime_text/sublime_text
+
+# volume control
+XF86AudioRaiseVolume
+    pactl set-sink-volume @DEFAULT_SINK@ +4%
+XF86AudioLowerVolume
+    pactl set-sink-volume @DEFAULT_SINK@ -4%
+
 
 #
 # bspwm hotkeys
