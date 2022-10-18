@@ -1,10 +1,14 @@
 #! /bin/sh
 
-pgrep -x sxhkd > /dev/null || sxhkd &
-
-# nitrogen --restore
-# picom --no-fading-openclose &
+# wallpaper
+nitrogen --restore
+# compositor
 picom &
+# hotkeys
+pgrep -x sxhkd > /dev/null || sxhkd &
+# polybar
+$HOME/.config/polybar/launch.sh
+
 
 # bspc monitor -d I II III IV V VI VII VIII IX X
 bspc monitor -d I II III
@@ -21,18 +25,20 @@ bspc config gapless_monocle      true
 bspc rule -a Chromium desktop='^2'
 
 
-# kde specific config
+# general bspwm rules
+#
+# rofi
+bspc rule -a Rofi state=floating
+# sublime text
+bspc rule -a Sublime_text state=floating
+
+
+# kde specific bspwm rules
 #
 # krunner
 bspc rule -a krunner state=floating
-# rofi
-bspc rule -a Rofi state=floating
-# # klipper - The following rule is NOT WORKING!
-# bspc rule -a plasmashell:*:klipper state=floating rectangle='592x592+3048+56'
 # plasmashell
 bspc rule -a plasmashell state=floating sticky=on border=off
-# sublime text
-bspc rule -a Sublime_text state=floating
 # dolphin
 bspc rule -a dolphin state=floating
 # system settings
@@ -41,4 +47,5 @@ bspc rule -a systemsettings state=floating
 
 # open any application in a receptacle, if one available
 # shifted to .local/bin/rxrofi script
-# bspc rule -a *:* node=any.leaf.!window.local
+#   rofi -show combi -normal-window
+#   bspc rule -a *:* -o node=any.leaf.!window.local
