@@ -1,12 +1,15 @@
 configuration {
-    modes: [combi,calc];
+    modes: [combi,"clipboard:clipr",calc];
     combi-modes: [drun,window];
     font: "JetBrains Mono 14";
     terminal: "konsole";
     display-combi: "find";
     window-format: "[<span color='#FFC24B'>{w}</span>]    <span color='#81C784'>{c}</span>   [<span size='small'>{t}</span>]";
-    drun-display-format: "[<span weight='light' color='#FFC24B'>{name}</span>] [<span weight='light' size='small'><i>({generic})</i></span>]";
-    combi-display-format: "[<span weight='light' color='#90CAF9'>{mode}</span>] {text}";
+    /* drun-display-format: "[<span weight='light' color='#FFC24B'>{name}</span>] [<span weight='light' size='small'><i>({generic})</i></span>]"; */
+    drun-display-format: "[<span weight='light' color='#5FA8D3'>{name}</span>] [<span weight='light' size='small'><i>({generic})</i></span>]";
+    /* combi-display-format: "[<span weight='light' color='#90CAF9'>{mode}</span>] {text}"; */
+    combi-display-format: "[<span weight='light' color='#343A40'>{mode}</span>] {text}";
+    kb-custom-1: "Alt+BackSpace";
     timeout {
         action: "kb-cancel";
         delay:  0;
