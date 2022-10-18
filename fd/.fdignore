@@ -1,0 +1,10 @@
+node_modules
+Developer/go/pkg
+.git
+.local
+.rustup
+.cargo
+.npm
+.cache
+.config
+.icons
