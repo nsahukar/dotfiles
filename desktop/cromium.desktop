@@ -1,0 +1,7 @@
+# ~/.local/share/applications/
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Cromium
+GenericName=Web Browser Incognito
+Exec=/usr/bin/chromium --incognito
