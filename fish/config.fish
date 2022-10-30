@@ -40,6 +40,15 @@ set -x XDG_CURRENT_DESKTOP KDE
 set -U SXHKD_SHELL sh
 
 
+# SSH-AGENT
+#
+if test -z (pgrep ssh-agent)
+  ssh-agent -c > $HOME/.ssh-agent
+  chmod 600 $HOME/.ssh-agent
+end
+source $HOME/.ssh-agent > /dev/null
+
+
 # FZF
 #
 # By default hidden files are not included in fd search.
@@ -52,15 +61,6 @@ set fzf_alt_c_command 'fd --type directory --strip-cwd-prefix'
 set -x FZF_DEFAULT_COMMAND $fzf_default_command
 set -x FZF_CTRL_T_COMMAND $fzf_default_command
 set -x FZF_ALT_C_COMMAND $fzf_alt_c_command
-
-
-# SSH-AGENT
-#
-# if test -z (pgrep ssh-agent)
-#   eval (ssh-agent -c)
-#   set -Ux SSH_AUTH_SOCK $SSH_AUTH_SOCK
-#   set -Ux SSH_AGENT_PID $SSH_AGENT_PID
-# end
 
 
 # ALIAS
