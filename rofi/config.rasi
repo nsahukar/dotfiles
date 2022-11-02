@@ -1,5 +1,6 @@
 configuration {
-    modes: [combi,"clipboard:clipr",calc];
+    /* modes: [combi,"clipboard:clipr",calc]; */
+    modes: [combi,calc];
     combi-modes: [drun,window];
     font: "JetBrains Mono 14";
     terminal: "konsole";
