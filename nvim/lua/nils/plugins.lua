@@ -88,7 +88,12 @@ return require('packer').startup(function(use)
     -- adds vscode-like pictograms to native LSP
     { 'onsails/lspkind-nvim', after = 'nvim-cmp' },
   }
+
+
+  -- Color hightlighter
+  use { 'norcalli/nvim-colorizer.lua' }
   
+
   -- Language Servers
   --
   -- Goalng
