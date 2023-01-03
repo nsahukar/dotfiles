@@ -43,13 +43,13 @@ return require('packer').startup(function(use)
 
   -- Telesecope (Extendable fuzzy finder)
   use {
-    'nvim-telescope/telescope.nvim', 
+    'nvim-telescope/telescope.nvim',
     tag = '0.1.0',
     requires = { 'nvim-lua/plenary.nvim' }
   }
   -- FZF extension - telescope
   use {
-    'nvim-telescope/telescope-fzf-native.nvim', 
+    'nvim-telescope/telescope-fzf-native.nvim',
     run = 'make clean && make'
   }
 
@@ -65,10 +65,10 @@ return require('packer').startup(function(use)
   -- A Completion Engine plugin with
   -- Native LSP Configuration plugin
   use {
-    { 
+    {
       -- completion engine
       'hrsh7th/nvim-cmp',
-      requires = { 
+      requires = {
         -- native LSP configuration plugin
         { 'neovim/nvim-lspconfig' },
         -- Snippet engine
@@ -92,6 +92,9 @@ return require('packer').startup(function(use)
 
   -- Color hightlighter
   use { 'norcalli/nvim-colorizer.lua' }
+
+  -- Git Signs
+  use { 'lewis6991/gitsigns.nvim' }
   
 
   -- Language Servers
