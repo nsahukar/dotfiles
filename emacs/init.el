@@ -53,31 +53,38 @@
   (setq vertico-cycle t))
 
 
-;; evil-collection-issue #60 (Refer github)
-(setq evil-want-keybinding nil)
 ;; evil
 (use-package evil
-  :config (evil-mode 1))
+  :ensure t
+  :init
+  (setq evil-want-integration t) ;; This is optional since it's already set to t by default
+  (setq evil-want-keybinding nil)
+  :config
+  (evil-mode 1))
+
 ;; evil-collection
 (use-package evil-collection
   :after evil
-  :init (evil-collection-init))
+  :ensure t
+  :config
+  (evil-collection-init))
 
 
 ;; modus-themes
 (use-package modus-themes
-  :init
+  :ensure t
+  :demand t
+  :config
   ;; Add all your customizations prior to laoding the themes
   (setq modus-themes-italic-constructs t
      modus-themes-bold-constructs nil
-     modus-themes-region '(bg-only no-extend)
-     modus-themes-mode-line '(moody accented borderless))
+     modus-themes-common-palette-overrides
+     modus-themes-preset-overrides-intense)
+     ;; modus-themes-region '(bg-only no-extend)
+     ;; modus-themes-mode-line '(moody accented borderless))
   
-  ;; Load the theme files before enabling a theme (else you get an error)
-  (modus-themes-load-themes)
-  :config
-  ;; Load the theme of your choice:
-  (modus-themes-load-vivendi) ;; OR (modus-themes-load-operandi)
+  ;; Load theme of your choice
+  (load-theme 'modus-vivendi :no-confirm) ;; OR (load-theme 'modus-operandi)
   :bind ("<f5>" . modus-themes-toggle))
 
 
