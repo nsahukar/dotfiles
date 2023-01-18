@@ -1,39 +1,46 @@
 local lspconfig = require('lspconfig')
 local util = require('lspconfig.util')
 
-local nnoremap = function(lhs, rhs, opts)
-  vim.keymap.set('n', lhs, rhs, opts)
-end
-
-local inoremap = function(lhs, rhs, opts)
-  vim.keymap.set('i', lhs, rhs, opts)
-end
-
-
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <C-x><C-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
+  local nmap = function(keys, func, desc)
+    if desc then
+      desc = 'LSP: ' .. desc
+    end
+    local bufopts = { noremap = true, silent = true, buffer = bufnr, desc = desc }
+    vim.keymap.set('n', keys, func, bufopts)
+  end
+
+  local imap = function(keys, func, desc)
+    if desc then
+      desc = 'LSP: ' .. desc
+    end
+    local bufopts = { noremap = true, silent = true, buffer = bufnr, desc = desc }
+    vim.keymap.set('i', keys, func, bufopts)
+  end
+
   -- Mappings
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  local bufopts = { noremap = true, silent = true, buffer = bufnr }
-  nnoremap('K', vim.lsp.buf.hover, bufopts)
-  nnoremap('gD', vim.lsp.buf.declaration, bufopts)
-  nnoremap('gd', vim.lsp.buf.definition, bufopts)
-  nnoremap('gt', vim.lsp.buf.type_definition, bufopts)
-  nnoremap('gi', vim.lsp.buf.implementation, bufopts)
-  nnoremap('gr', vim.lsp.buf.references, bufopts)
-  inoremap('<C-k>', vim.lsp.buf.signature_help, bufopts)
-  nnoremap('<leader>n', vim.lsp.buf.rename, bufopts)
-  nnoremap('<leader>ca', vim.lsp.buf.code_action, bufopts)
-  nnoremap('<leader>f', vim.lsp.buf.formatting, bufopts)
+  nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
+  nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+  nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+  nmap('gt', vim.lsp.buf.type_definition, '[G]oto [T]ype Definition')
+  nmap('gi', vim.lsp.buf.implementation, 'List all implementation(s) in quickfix window')
+  nmap('gr', vim.lsp.buf.references, '[G]oto [R]eferences')
+  imap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+  nmap('<leader>n', vim.lsp.buf.rename, 'Re[n]ame')
+  nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+  nmap('<leader>f', vim.lsp.buf.format, '[F]ormat')
+  nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+  nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
   -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-  local opts = { noremap = true, silent = true }
-  nnoremap('<leader>d', vim.diagnostic.open_float, opts)
-  nnoremap('[d', vim.diagnostic.goto_prev, opts)
-  nnoremap(']d', vim.diagnostic.goto_next, opts)
-  nnoremap('<leader>q', vim.diagnostic.setloclist, opts)
+  nmap('<leader>d', vim.diagnostic.open_float, 'Show [D]iagnostic')
+  nmap('[d', vim.diagnostic.goto_prev, 'Goto Previous [D]iagnostic')
+  nmap(']d', vim.diagnostic.goto_next, 'Goto Next [D]iagnostic')
+  nmap('<leader>q', vim.diagnostic.setloclist, 'Show [Q]uickfix list')
 end
 
 
