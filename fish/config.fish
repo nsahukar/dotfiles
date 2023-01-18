@@ -41,7 +41,7 @@ set -x XDG_CURRENT_DESKTOP KDE
 # SXHKD 
 # If using X window managers,
 # Set default shell for 'sxhkd' as 'sh'
-set -U SXHKD_SHELL sh
+# set -U SXHKD_SHELL sh
 
 
 # SSH-AGENT
@@ -96,6 +96,9 @@ alias py "python3"
 
 # lxappearance
 alias lx lxappearance
+
+# open file in chromium incognito
+alias web "chromium --incognito"
 
 
 # FUNCTIONS
