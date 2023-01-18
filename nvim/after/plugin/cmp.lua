@@ -19,7 +19,7 @@ cmp.setup({
 		}),
 		['<CR>'] = cmp.mapping.confirm({ 
 			behavior = cmp.ConfirmBehavior.Replace,
-			select = true 
+			select = false 
 		}),
 
 		['<Tab>'] = cmp.mapping(function(fallback)
