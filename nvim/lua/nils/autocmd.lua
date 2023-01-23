@@ -36,15 +36,30 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' },
 vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
   group = vim.api.nvim_create_augroup('dprintFmt', { clear = true }),
   pattern = { '*.js', '*.ts', '*.html', '*.css' },
-  callback = function ()
-    local bufname = vim.fn.fnameescape(vim.api.nvim_buf_get_name(0))
-    vim.fn.jobstart({"dprint", "-c", "/home/nils/.config/dprint/dprint.json", "fmt", bufname}, {
+  callback = function()
+    local curpos = vim.api.nvim_win_get_cursor(0)
+    local fname = vim.fn.fnameescape(vim.api.nvim_buf_get_name(0))
+    vim.fn.jobstart({ "dprint", "-c", "/home/nils/.config/dprint/dprint.json", "fmt", fname }, {
       stdout_buffered = true,
-      on_stdout = function (_, res)
-        if res then
-          vim.cmd(':e')
+      on_stdout = function(_, out)
+        if out then
+          vim.api.nvim_command "edit"
+          local buflinecount = vim.api.nvim_buf_line_count(0)
+          if curpos[1] > buflinecount then
+            curpos[1] = buflinecount
+          end
+          vim.api.nvim_win_set_cursor(0, curpos)
         end
       end
-    }) 
+      -- on_stderr = function (_, err)
+      --   if err then
+      --     print("Error:")
+      --     P(err)
+      --   end
+      -- end,
+      -- on_exit = function ()
+      --   P("Exit")
+      -- end
+    })
   end
 })
