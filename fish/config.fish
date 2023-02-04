@@ -22,10 +22,12 @@ set -x NGINXPATH /usr/local/nginx/sbin
 set -x JAVA_HOME /usr/lib/jvm/default
 
 # Android
-set -x ANDROID_SDK_ROOT /home/nix/Downloads/setups/android/sdk
+# set -x ANDROID_SDK_ROOT /home/nils/Downloads/setups/android/sdk
+set -x ANDROID_HOME /home/nils/Downloads/setups/android/sdk
 
 # Append paths
-set PATH $PATH $LOCAL_BIN $GOROOT/bin $GOBIN $CARGOPATH $NGINXPATH $ANDROID_SDK_ROOT/cmdline-tools/latest/bin $ANDROID_SDK_ROOT/cmdline-tools/tools/bin
+# set PATH $PATH $LOCAL_BIN $GOROOT/bin $GOBIN $CARGOPATH $NGINXPATH $ANDROID_SDK_ROOT/cmdline-tools/latest/bin $ANDROID_SDK_ROOT/cmdline-tools/tools/bin
+set PATH $PATH $LOCAL_BIN $GOROOT/bin $GOBIN $CARGOPATH $NGINXPATH $ANDROID_HOME/cmdline-tools/latest/bin $ANDROID_HOME/platform-tools
 
 
 # *** VARIABLES ***
