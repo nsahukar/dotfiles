@@ -1,0 +1,9 @@
+# PATH=/usr/share/applications
+[Desktop Entry]
+Name=Android Studio
+Comment=Official IDE for Android App development
+Exec=/home/nils/.local/bin/android-studio/bin/studio.sh
+Terminal=false
+Type=Application
+Icon=/home/nils/.local/bin/android-studio/bin/studio.svg
+Categories=Development;IDE;
