@@ -86,7 +86,7 @@ for _, lang_server in ipairs(servers) do
 
   -- specific language server setup
   if lang_server == 'emmet_ls' then
-    config.filetypes = { "html", "gohtmltmpl", "css", "sass", "scss", "less" }
+    config.filetypes = { "html", "gohtml", "css", "sass", "scss", "less" }
   elseif lang_server == 'volar' then
     config.filetypes = { "vue", "javascript" }
     config.root_dir = util.root_pattern("package.json", ".git/")
