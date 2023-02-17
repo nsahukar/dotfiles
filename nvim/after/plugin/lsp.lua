@@ -58,7 +58,7 @@ local servers = {
 
   -- lua-language-server
   -- install: sudo pacman -S lua-language-server
-  'sumneko_lua',
+  'lua_ls',
 
   -- pyright
   -- install: python3 -m pip install --user --upgrade pyright
