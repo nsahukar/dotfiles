@@ -505,7 +505,8 @@ awful.rules.rules = {
       keys = clientkeys,
       buttons = clientbuttons,
       screen = awful.screen.preferred,
-      placement = awful.placement.no_overlap + awful.placement.no_offscreen
+      -- placement = awful.placement.no_overlap + awful.placement.no_offscreen
+      placement = awful.placement.no_offscreen
     }
   },
 
@@ -520,6 +521,7 @@ awful.rules.rules = {
       "Rofi",
       "Sublime_text",
       "dolphin",
+      "systemsettings",
       "Virt-manager",
       "Arandr",
       "Blueman-manager",
@@ -546,7 +548,8 @@ awful.rules.rules = {
   },
     properties = {
       floating = true,
-      -- placement = awful.placement.centered
+      -- placement = awful.placement.restore + awful.placement.centered
+      placement = awful.placement.restore
     }
   },
 
