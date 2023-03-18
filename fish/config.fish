@@ -100,7 +100,11 @@ alias py "python3"
 alias lx lxappearance
 
 # open file in chromium incognito
-alias web "chromium --incognito"
+alias cog "chromium --incognito"
+
+# use handlr instead of xdg-open
+# alias xdg-open "handlr open"
+alias open "handlr open"
 
 
 # FUNCTIONS
