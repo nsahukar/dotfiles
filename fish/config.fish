@@ -39,6 +39,11 @@ set -x EDITOR nvim
 # set -x QT_STYLE_OVERRIDE kvantum
 # Qt5 applications under non-KDE environments, faking KDE environment
 set -x XDG_CURRENT_DESKTOP KDE
+# Qt5 wayland support
+set -x QT_QPA_PLATFORM "wayland;xcb"
+# tell Qt what theme to use
+# set -x QT_QPA_PLATFORMTHEME qt5ct
+
 
 # SXHKD 
 # If using X window managers,
@@ -79,6 +84,9 @@ alias la "ls -cltra"
 
 # list files in ascending order of name
 alias ll "ls -cl"
+
+# confirmation before removing files recursively
+alias rm "rm -rfI"
 
 # change to dotfiles directory
 alias dod "cd ~/Developer/dotfiles/"
@@ -128,3 +136,12 @@ end
 #
 # init script
 starship init fish | source
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+if test -f /home/nils/Downloads/setups/miniconda3/bin/conda
+    eval /home/nils/Downloads/setups/miniconda3/bin/conda "shell.fish" "hook" $argv | source
+end
+# <<< conda initialize <<<
+
