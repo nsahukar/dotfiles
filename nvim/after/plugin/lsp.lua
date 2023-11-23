@@ -62,6 +62,7 @@ local servers = {
 
   -- pyright
   -- install: python3 -m pip install --user --upgrade pyright
+  -- install: sudo pacman -S pyright
   'pyright',
 
   -- denols (deno language server)

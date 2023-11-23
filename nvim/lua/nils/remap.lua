@@ -39,8 +39,8 @@ nnoremap('<leader><leader>', ':noh<CR>')
 
 -- Do not show command window or search window
 -- on following keybindings
-nnoremap('q:', '')
-nnoremap('q/', '')
+nnoremap('q:', '<nop>')
+nnoremap('q/', '<nop>')
 
 
 -- PLUGINS
