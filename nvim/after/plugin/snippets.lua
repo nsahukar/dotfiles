@@ -48,4 +48,5 @@ end, opts)
 ls.add_snippets('go', {
   s('enn', fmt("if err != nil {{\n\t{}\n}}", { i(0) })),
   s('haf', fmt("func {}(w http.ResponseWriter, r *http.Request) {{\n\t{}\n}}", { i(1), i(0) })),
+  s('tes', fmt("func Test{}(t *testing.T) {{\n\t{}\n}}", { i(1), i(0) })),
 })
