@@ -41,10 +41,17 @@ return require('packer').startup(function(use)
   use 'numToStr/Comment.nvim'
 
 
+  -- Surround
+  use {
+    'kylechui/nvim-surround',
+    tag = '*'
+  }
+
+
   -- Telesecope (Extendable fuzzy finder)
   use {
     'nvim-telescope/telescope.nvim',
-    tag = '0.1.0',
+    tag = '0.1.3',
     requires = { 'nvim-lua/plenary.nvim' }
   }
   -- FZF extension - telescope
@@ -101,4 +108,6 @@ return require('packer').startup(function(use)
   --
   -- Goalng
   use { 'fatih/vim-go', run = ':GoUpdateBinaries' }
+  -- Lisp
+  use { 'gpanders/nvim-parinfer' }
 end)
