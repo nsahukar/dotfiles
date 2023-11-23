@@ -597,3 +597,8 @@ awful.spawn.with_shell("nitrogen --restore")
 awful.spawn.with_shell("picom")
 -- Polybar
 awful.spawn.with_shell("$HOME/.config/polybar/launch.sh")
+
+-- Run commands as awesome launches
+--
+-- Giving local user permission to access xserver (required for betterlockscreen to work)
+awful.spawn.with_shell("xhost +SI:localuser:$USER")
