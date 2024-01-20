@@ -523,6 +523,7 @@ awful.rules.rules = {
       "dolphin",
       "systemsettings",
       "Virt-manager",
+      "Thunar",
       "Arandr",
       "Blueman-manager",
       "Gpick",
@@ -562,8 +563,15 @@ awful.rules.rules = {
   { rule = { class = "Chromium" },
     properties = { screen = 1, tag = "2" } },
 
-  -- Set Rofi top always open centered on the screen
+  -- Set Rofi to always open centered on the screen
   { rule = { class = "Rofi" },
+    properties = {
+      placement = awful.placement.centered
+    }
+  },
+
+  -- Set Thunar to restore its floating position on screen
+  { rule = { class = "Thunar" },
     properties = {
       placement = awful.placement.centered
     }
