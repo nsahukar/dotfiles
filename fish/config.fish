@@ -35,16 +35,6 @@ set PATH $PATH $LOCAL_BIN $GOROOT/bin $GOBIN $CARGOPATH $NGINXPATH $ANDROID_HOME
 # EDITOR
 set -x EDITOR nvim
 
-# Kvantum theme for Qt5 apps
-# set -x QT_STYLE_OVERRIDE kvantum
-# Qt5 applications under non-KDE environments, faking KDE environment
-set -x XDG_CURRENT_DESKTOP KDE
-# Qt5 wayland support
-set -x QT_QPA_PLATFORM "wayland;xcb"
-# tell Qt what theme to use
-# set -x QT_QPA_PLATFORMTHEME qt5ct
-
-
 # SXHKD 
 # If using X window managers,
 # Set default shell for 'sxhkd' as 'sh'
@@ -84,9 +74,6 @@ alias la "ls -cltra"
 
 # list files in ascending order of name
 alias ll "ls -cl"
-
-# confirmation before removing files recursively
-alias rm "rm -rfI"
 
 # change to dotfiles directory
 alias dod "cd ~/Developer/dotfiles/"
