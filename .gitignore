@@ -1,3 +1,4 @@
 emacs/elpa
 emacs/transient
+emacs/auto-save-list
 nvim/plugin
