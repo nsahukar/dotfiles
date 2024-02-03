@@ -1,9 +1,9 @@
-local nnoremap = require('nils.keymap').nnoremap
-local vnoremap = require('nils.keymap').vnoremap
-local xnoremap = require('nils.keymap').xnoremap
-local inoremap = require('nils.keymap').inoremap
-local tnoremap = require('nils.keymap').tnoremap
-local terminal = require('nils.terminal')
+local nnoremap = require('nijk.keymap').nnoremap
+local vnoremap = require('nijk.keymap').vnoremap
+local xnoremap = require('nijk.keymap').xnoremap
+local inoremap = require('nijk.keymap').inoremap
+local tnoremap = require('nijk.keymap').tnoremap
+local terminal = require('nijk.terminal')
 
 -- BASIC
 --
@@ -43,26 +43,26 @@ nnoremap('q:', '<nop>')
 nnoremap('q/', '<nop>')
 
 
--- PLUGINS
---
--- NvimTree
---
--- Toggle nvim-tree
-nnoremap('<leader>e', ':NvimTreeToggle<CR>')
-
--- Telescope
---
--- Telescope: find files
-nnoremap('<leader>ff', ':Telescope find_files<CR>')
--- Telescope: find buffers
-nnoremap('<leader>fb', ':Telescope buffers<CR>')
--- Telescope: find help
-nnoremap('<leader>h', ':Telescope help_tags<CR>')
-
-
 -- TERMINAL
 --
 -- Remapping <ESC> to exit
 tnoremap('<ESC>', '<C-\\><C-n>')
 -- Toggle terminal
 nnoremap('<leader>t', terminal.toggle_terminal)
+
+
+-- PLUGINS
+--
+-- NvimTree
+--
+-- Toggle nvim-tree
+-- nnoremap('<leader>e', ':NvimTreeToggle<CR>')
+
+-- Telescope
+--
+-- Telescope: find files
+-- nnoremap('<leader>ff', ':Telescope find_files<CR>')
+-- Telescope: find buffers
+-- nnoremap('<leader>fb', ':Telescope buffers<CR>')
+-- Telescope: find help
+-- nnoremap('<leader>h', ':Telescope help_tags<CR>')

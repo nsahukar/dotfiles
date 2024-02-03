@@ -1,4 +1,6 @@
-require('lualine').setup {
+local M = {}
+
+M.opts = {
   options = {
     icons_enabled = true,
     theme = 'tokyonight',
@@ -28,3 +30,13 @@ require('lualine').setup {
   tabline = {},
   extensions = {}
 }
+
+M.lualine = {
+  -- Lualine (statusline)
+  "nvim-lualine/lualine.nvim",
+  lazy = false,
+  dependencies = { "devicons" },
+  opts = M.opts,
+}
+
+return M.lualine

@@ -1,4 +1,6 @@
-require('nvim-treesitter.configs').setup {
+local M = {}
+
+M.opts = {
   -- A list of parser names, or "all"
   ensure_installed = {
     'lua', 
@@ -48,4 +50,27 @@ require('nvim-treesitter.configs').setup {
       }
     }
   },
+}
+
+M.treesitter = {
+  "nvim-treesitter/nvim-treesitter", 
+  name = "treesitter",
+  build = ":TSUpdate",
+  opts = M.opts,
+}
+
+M.treesitter_textobjects = {
+  "nvim-treesitter/nvim-treesitter-textobjects", 
+  dependencies = "treesitter"
+}
+
+M.treesitter_refactor = {
+  "nvim-treesitter/nvim-treesitter-refactor", 
+  dependencies = "treesitter"
+}
+
+return {
+  M.treesitter,
+  M.treesitter_textobjects,
+  M.treesitter_refactor,
 }
