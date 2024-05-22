@@ -62,7 +62,7 @@ o.smartcase = true
 -- SPLIT
 --
 -- Change default split behaviour
-o.splitbelow = true 
+o.splitbelow = true
 o.splitright = true
 
 

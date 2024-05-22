@@ -41,17 +41,17 @@ M.config = function ()
       enable = false
     },
 
-    refactor = {
-      highlight_definitions = {
-        enable = true
-      },
-      smart_rename = {
-        enable = true,
-        keymaps = {
-          smart_rename = "<leader>r"
-        }
-      }
-    },
+    -- refactor = {
+    --   highlight_definitions = {
+    --     enable = true
+    --   },
+    --   smart_rename = {
+    --     enable = true,
+    --     keymaps = {
+    --       smart_rename = "<leader>r"
+    --     }
+    --   }
+    -- },
   })
 end
 

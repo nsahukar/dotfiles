@@ -1,5 +1,11 @@
 local M = {}
 
+M.has_words_before = function()
+  unpack = unpack or table.unpack
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
+
 M.config = function()
   local cmp = require('cmp')
   local luasnip = require('luasnip')
@@ -19,12 +25,13 @@ M.config = function()
         i = cmp.mapping.abort(),
         c = cmp.mapping.close(),
       }),
-      ['<CR>'] = cmp.mapping.confirm({ 
-        behavior = cmp.ConfirmBehavior.Replace,
-        select = false 
+      ['<CR>'] = cmp.mapping.confirm({
+        behavior = cmp.ConfirmBehavior.Insert,
+        -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        select = false
       }),
 
-      ['<Tab>'] = cmp.mapping(function(fallback)
+      ['<M-n>'] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
         else
@@ -32,13 +39,33 @@ M.config = function()
         end
       end, { "i", "s" }),
 
-      ['<S-Tab>'] = cmp.mapping(function(fallback)
+      ['<M-p>'] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
         else
           fallback()
         end
       end, { "i", "s" }),
+
+      -- ['<Tab>'] = cmp.mapping(function(fallback)
+      --   -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+      --   -- that way you will only jump inside the snippet region
+      --   if luasnip.expand_or_jumpable() then
+      --     luasnip.expand_or_jump()
+      --   elseif M.has_words_before() then
+      --     cmp.complete()
+      --   else
+      --     fallback()
+      --   end
+      -- end, { "i", "s" }),
+      --
+      -- ['<S-Tab>'] = cmp.mapping(function(fallback)
+      --   if luasnip.jumpable(-1) then
+      --     luasnip.jump(-1)
+      --   else
+      --     fallback()
+      --   end
+      -- end, { "i", "s" }),
     },
 
     sources = cmp.config.sources({
@@ -88,7 +115,7 @@ M.cmp = {
   name = "cmp",
   dependencies = {
     -- Snippet engine
-    "L3MON4D3/LuaSnip",
+    { "L3MON4D3/LuaSnip", version = "v2.*" },
     -- adds vscode-like pictograms to native LSP
     "onsails/lspkind-nvim",
   },

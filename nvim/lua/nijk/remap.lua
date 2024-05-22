@@ -8,20 +8,20 @@ local terminal = require('nijk.terminal')
 -- BASIC
 --
 -- Move lines
-nnoremap('<M-k>', ':m .-2<CR>==')
-nnoremap('<M-j>', ':m .+1<CR>==')
+-- nnoremap('<M-k>', ':m .-2<CR>==')
+-- nnoremap('<M-j>', ':m .+1<CR>==')
 vnoremap("<M-j>", ":m '>+1<CR>gv=gv")
 vnoremap("<M-k>", ":m '<-2<CR>gv=gv")
 
 -- Switching between tabs
-nnoremap('<M-Tab>', ':tabnext<CR>')
+-- nnoremap('<M-Tab>', ':tabnext<CR>')
 nnoremap('<S-Tab>', ':tabprev<CR>')
 
 -- Moving around split windows
-nnoremap('<C-h>', '<C-w>h')
-nnoremap('<C-j>', '<C-w>j')
-nnoremap('<C-k>', '<C-w>k')
-nnoremap('<C-l>', '<C-w>l')
+nnoremap('<M-h>', '<C-w>h')
+nnoremap('<M-j>', '<C-w>j')
+nnoremap('<M-k>', '<C-w>k')
+nnoremap('<M-l>', '<C-w>l')
 
 -- Copy, paste from system clipboard, using '+' register here
 vnoremap('<leader>y', '"+y')

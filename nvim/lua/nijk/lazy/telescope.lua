@@ -9,12 +9,10 @@ M.opts = {
   		prompt_position = "top",
   		preview_cutoff = 10000,
   	},
-  
   	selection_strategy = "reset",
   	sorting_strategy = "descending",
   	scroll_strategy = "cycle",
   	color_devicons = true,
-  
   	file_ignore_patterns = {
   		"node_modules", "build/"
   	}

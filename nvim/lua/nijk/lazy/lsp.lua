@@ -12,13 +12,13 @@ M.on_attach = function(_, bufnr)
     vim.keymap.set('n', keys, func, bufopts)
   end
 
-  local imap = function(keys, func, desc)
-    if desc then
-      desc = 'LSP: ' .. desc
-    end
-    local bufopts = { noremap = true, silent = true, buffer = bufnr, desc = desc }
-    vim.keymap.set('i', keys, func, bufopts)
-  end
+  -- local imap = function(keys, func, desc)
+  --   if desc then
+  --     desc = 'LSP: ' .. desc
+  --   end
+  --   local bufopts = { noremap = true, silent = true, buffer = bufnr, desc = desc }
+  --   vim.keymap.set('i', keys, func, bufopts)
+  -- end
 
   -- Mappings
   -- See `:help vim.lsp.*` for documentation on any of the below functions
@@ -28,7 +28,7 @@ M.on_attach = function(_, bufnr)
   nmap('gt', vim.lsp.buf.type_definition, '[G]oto [T]ype Definition')
   nmap('gi', vim.lsp.buf.implementation, 'List all implementation(s) in quickfix window')
   nmap('gr', vim.lsp.buf.references, '[G]oto [R]eferences')
-  imap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+  -- imap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
   nmap('<leader>n', vim.lsp.buf.rename, 'Re[n]ame')
   nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
   nmap('<leader>f', vim.lsp.buf.format, '[F]ormat')
@@ -36,10 +36,10 @@ M.on_attach = function(_, bufnr)
   nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
   -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-  nmap('<leader>d', vim.diagnostic.open_float, 'Show [D]iagnostic')
-  nmap('[d', vim.diagnostic.goto_prev, 'Goto Previous [D]iagnostic')
-  nmap(']d', vim.diagnostic.goto_next, 'Goto Next [D]iagnostic')
-  nmap('<leader>q', vim.diagnostic.setloclist, 'Show [Q]uickfix list')
+  -- nmap('<leader>d', vim.diagnostic.open_float, 'Show [D]iagnostic')
+  nmap('[d', vim.diagnostic.goto_next, 'Goto Previous [D]iagnostic')
+  nmap(']d', vim.diagnostic.goto_prev, 'Goto Next [D]iagnostic')
+  -- nmap('<leader>q', vim.diagnostic.setloclist, 'Show [Q]uickfix list')
 end
 
 M.config = function()

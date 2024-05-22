@@ -51,7 +51,9 @@ M.opts = {
   },
   highlight_groups = {
     -- Minor color adjustments
-    Normal = { bg = "#0B0A0F", fg = "#4A4E69" },
+    -- Normal = { bg = "#0B0A0F", fg = "#4A4E69" },
+    Normal = { bg = "#0B0A0F", fg = "#6A7096" },
+    NormalNC = { bg = "#121018" },
     CursorLine = { bg = "#0F0F16" },
     Visual = { bg = "#1A1A26" },
     TelescopeNormal = { bg = "#0D0C12" },
@@ -65,6 +67,10 @@ M.config = function (_, opts)
   require("rose-pine").setup(opts)
   -- Load the colorscheme
   vim.cmd('colorscheme rose-pine')
+
+  -- Treesitter color adjustments
+  -- vim.cmd('hi @variable.builtin guifg=#5FA8D3')
+  vim.cmd('hi @variable.builtin guifg=#FF8FAB')
 end
 
 M.rose_pine = {
