@@ -21,6 +21,7 @@ return {
       servers = {
         lua_ls = {},
         gopls = {},
+        pyright = {},
         ts_ls = {},
         emmet_language_server = {},
       }
