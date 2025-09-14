@@ -3,3 +3,4 @@ emacs/transient
 emacs/auto-save-list
 nvim/plugin
 nvim/was-after/
+.DS_Store
