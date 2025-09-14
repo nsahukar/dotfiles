@@ -43,6 +43,8 @@ return {
           local bufopts = { noremap = true, silent = true, buffer = bufnr }
           vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
           vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+          vim.keymap.set('n', 'ca', vim.lsp.buf.code_action, bufopts)
+          vim.keymap.set('n', 'sd', vim.diagnostic.open_float, bufopts)
         end
         lspconfig[server].setup(config)
       end
