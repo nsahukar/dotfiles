@@ -31,6 +31,18 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' },
   }
 )
 
+-- Relaoding waybar after saving the config file or its style file
+vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
+  group = vim.api.nvim_create_augroup('filesaver', { clear = true }),
+  pattern = "/home/nils/Developer/dotfiles/waybar/*",
+  callback = function()
+    vim.fn.jobstart({ "killall", "-SIGUSR2", "waybar" })
+  end
+  -- command = "!killall -SIGUSR2 waybar"
+  -- command = "echo 'restart waybar'"
+  -- command = "!cal"
+})
+
 -- -- Use LspAttach autocommand to only map the following keys
 -- -- after the language server attaches to the current buffer
 -- vim.api.nvim_create_autocmd('LspAttach', {
