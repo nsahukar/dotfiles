@@ -28,6 +28,14 @@ return {
       nerd_font_variant = 'mono'
     },
 
+    completion = {
+      documentation = {
+        auto_show = true,
+        auto_show_delay_ms = 150,
+        update_delay_ms = 50,
+      },
+    },
+
     signature = { enabled = true },
 
     -- Default list of enabled providers defined so that you can extend it

@@ -23,7 +23,8 @@ return {
         gopls = {},
         pyright = {},
         ts_ls = {},
-        emmet_language_server = {},
+        sqls = {},
+        -- emmet_language_server = {},
       }
     },
     config = function(_, opts)
@@ -36,7 +37,8 @@ return {
       --   }
       -- }
 
-      local lspconfig = require('lspconfig')
+      -- local lspconfig = require('lspconfig')
+      -- local lspconfig = vim.lsp.config
       for server, config in pairs(opts.servers) do
         config.capabilities = require('blink.cmp').get_lsp_capabilities()
         config.on_attach = function(_, bufnr)
@@ -46,7 +48,11 @@ return {
           vim.keymap.set('n', 'ca', vim.lsp.buf.code_action, bufopts)
           vim.keymap.set('n', 'sd', vim.diagnostic.open_float, bufopts)
         end
-        lspconfig[server].setup(config)
+
+        -- local base = vim.lsp.config[server] or {}
+        -- vim.lsp.config[server] = vim.tbl_deep_extend('force', base, config)
+        vim.lsp.config(server, config)
+        vim.lsp.enable(server)
       end
 
       vim.api.nvim_create_autocmd('LspAttach', {
